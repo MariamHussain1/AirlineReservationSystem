@@ -35,7 +35,7 @@ public class SignIn implements ActionListener {
 		
 
 		frame.pack();
-		frame.setSize(600, 250);
+		frame.setSize(600, 350);
 
 		profileLabel.setBounds(50,180,200,200);
 		profileLabel.setFocusable(false);
