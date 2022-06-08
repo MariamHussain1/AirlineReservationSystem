@@ -2,7 +2,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.net.MalformedURLException;
 
 import javax.swing.BorderFactory;
@@ -15,16 +14,20 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 public class Welcome implements ActionListener{
 	
-	JFrame frame = new JFrame();
-	JButton next = new JButton("Next");
+	JFrame frame = new JFrame();  //adding the frame
+	JButton back = new JButton("BACK");  
 	JLabel title = new JLabel();
-	JLabel light_title = new JLabel();
-	JLabel text = new JLabel();
+	JLabel text1 = new JLabel();
+	JLabel text2 = new JLabel();
+	JLabel text3 = new JLabel();
 	JPanel greyPanel = new JPanel();
 	JPanel secondGreyPanel = new JPanel();
-	
-	Icon profile = new ImageIcon("Images/profile.jpg");
-	JLabel profileLabel = new JLabel(profile);
+	Icon pfp = new ImageIcon("Images/profile.jpg");
+	JButton profile = new JButton(pfp);
+	Icon flight = new ImageIcon("Images/flight.png");
+	JButton bookFlight = new JButton(flight);
+	Icon lottery = new ImageIcon("Images/lottery.png");
+	JButton PlayLottery = new JButton(lottery);
 	
 	Color grey = new Color(211, 211, 211);
 	Color grayBlue = new Color(102, 153, 204);
@@ -42,77 +45,143 @@ public class Welcome implements ActionListener{
 		
 		
 	    frame.getContentPane().setBackground(Color.white);
-	    frame.getContentPane().addMouseListener(new ScreenClick());
-
-	  
-	    frame.getContentPane().add(profileLabel);
+	    
+	    //setting bounds for the profile image
+	    frame.getContentPane().add(profile);
+	    profile.setBounds(130, 180, 200, 200);
+		profile.setFocusable(false);
+		profile.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+		profile.addActionListener(this);
+		profile.setBackground(darkBlue); 
+		profile.setBorder(border);
 
 	    frame.pack();
 	    
-	    //setting bounds for the plane image
-	    profileLabel.setBounds(50,180,200,200);
-	    profileLabel.setFocusable(false);
-	    // set the border of this component
-	    profileLabel.setBorder(border);
+	    frame.getContentPane().add(text1);
+	    frame.pack();
+	    
+	    text1.setText("View Profile");
+		text1.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		text1.setBounds(140,300,200,200);
+		text1.setForeground(darkBlue);
+	    
+	    //setting bounds for the flight image
+	    frame.getContentPane().add(bookFlight);
+	    bookFlight.setBounds(355, 180, 200, 200);
+		bookFlight.setFocusable(false);
+		bookFlight.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+		bookFlight.addActionListener(this);
+		bookFlight.setBackground(Color.white); 
+		bookFlight.setBorder(border);
+
+	    frame.pack();
+	    
+	    
+	    //adding caption for the book flight image
+	    frame.getContentPane().add(text2);
+	    text2.setText("Book a flight");
+		text2.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		text2.setBounds(365,300,200,200);
+		text2.setForeground(darkBlue);
+	    
+	    //setting bounds for the lottery image
+	    frame.getContentPane().add(PlayLottery);
+	    PlayLottery.setBounds(580, 180, 200, 200);
+	    PlayLottery.setFocusable(false);
+	    PlayLottery.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+	    PlayLottery.addActionListener(this);
+	    PlayLottery.setBackground(grey); 
+	    PlayLottery.setBorder(border);
+
+	    frame.pack();
+	    
+	    //adding caption under the lottery button
+	    frame.getContentPane().add(text3);
+	    text3.setText("Play Lottery");
+		text3.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		text3.setBounds(590,300,200,200);
+		text3.setForeground(darkBlue);
+	    
 		
-		
-		
-	    //adding the next button
-	    next.setBounds(200, 500, 200, 75);
-		next.setFocusable(false);
-		next.setFont(new Font("Times New Roman", Font.ITALIC, 30));
-		next.addActionListener(this);
-		next.setBackground(white);
-		
-		next.addActionListener(this);
+	    //adding the back button 
+	    back.setBounds(50, 570, 150, 50);
+	    back.setFocusable(false);
+	    back.setFont(new Font("Times New Roman", Font.ITALIC, 30));
+	    back.addActionListener(this);
+	    back.setBackground(white);
 	
 		//add the title
 		title.setText("WELCOME");
-		title.setFont(new Font("Times New Roman", Font.ITALIC, 80));
-		title.setBounds(260,-230,650,650);
+		title.setFont(new Font("Times New Roman", Font.BOLD, 80));
+		title.setBounds(230,-230,650,650);
 		title.setForeground(grayBlue);
 		
-		//Add grey panels to bottom and top of page
+		/*
+		 * Add grey panels to the top and bottom of the page
+		 */
 		greyPanel.setBackground(grey);
 	    greyPanel.setBounds(0,0,900,100);
 	    secondGreyPanel.setBackground(grey);
 	    secondGreyPanel.setBounds(0,550,900,100);
-		
-	  
-	    
-		//adding our names
-		frame.getContentPane().add(text);
-	    frame.pack();
-	    
-	    text.setText("ICS3U7 Shruthi Konduru and Mariam Hussain");
-		text.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		text.setBounds(150,-300,650,650);
-		text.setForeground(darkBlue);
 			
 	    
 		frame.getContentPane().setBackground(Color.white);
 	    frame.pack();
 	    frame.setSize(900,800);
 	
-		frame.add(next);
+		frame.add(back);
 		frame.add(title);
-		frame.add(light_title);
 		frame.add(greyPanel);
 		frame.add(secondGreyPanel);
-		frame.add(text);
-		frame.add(profileLabel);
+		frame.add(profile);
+		frame.add(bookFlight);
+		frame.add(PlayLottery);
+		frame.add(text1);
+		frame.add(text2);
+		frame.add(text3);
 		
 		
 			
 	}
+	
 	public void actionPerformed(ActionEvent e) {	
-		if(e.getSource() == next) {
-			Menu menuPage = new Menu();
+		if(e.getSource() == profile) {
+				frame.dispose();
+				try {
+					AboutUs aboutUs = new AboutUs();
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 
+			
 			frame.dispose();
+			}
+		if(e.getSource() == bookFlight) {
+			frame.dispose();
+			try {
+				ChooseFlights choose = new ChooseFlights();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+		
+		frame.dispose();
 		}
+		if(e.getSource() == back) {
+			frame.dispose();
+			try {
+				Menu menu = new Menu();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
 		
+		frame.dispose();
+		}
+		}
 	}
+
 		
 
 
-}
+
