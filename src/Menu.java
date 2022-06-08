@@ -17,7 +17,8 @@ public class Menu implements ActionListener {
 	JButton logIn = new JButton("Log In");
 	JButton signIn = new JButton("Sign Up");
 	JLabel title = new JLabel();
-	JLabel light_title = new JLabel();
+	Icon main = new ImageIcon("Images/mainMenu.jpg");
+	JLabel mainImage = new JLabel(main);
 	Color grayBlue = new Color(102, 153, 204);
 	Color darkBlue = new Color(20, 64, 109);
 	Color white = new Color(255, 255, 255);
@@ -33,37 +34,41 @@ public class Menu implements ActionListener {
 		 frame.pack();
 		 frame.setSize(900,800);
 		 
+		//setting bounds for the plane image
+		mainImage.setBounds(0,0,900,900);
 		 
 		 
-		logIn.setBounds(250, 600, 200, 75);
+		 
+		logIn.setBounds(50, 100, 200, 75);
 		logIn.setFocusable(false);
 		logIn.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		logIn.addActionListener(this);
-		logIn.setBackground(darkBlue); // why does dark blue not work 
+		logIn.setBackground(Color.white); // why does dark blue not work 
 		
 		
-		aboutUs.setBounds(50, 600, 200, 75);
+		aboutUs.setBounds(50, 250, 200, 75);
 		aboutUs.setFocusable(false);
 		aboutUs.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		aboutUs.addActionListener(this);
-		aboutUs.setBackground(darkBlue);
+		aboutUs.setBackground(Color.white);
 		
-		logOut.setBounds(650, 600, 200, 75);
+		logOut.setBounds(50, 325, 200, 75);
 		logOut.setFocusable(false);
 		logOut.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		logOut.addActionListener(this);
-		logOut.setBackground(darkBlue);
+		logOut.setBackground(Color.white);
 		
-		signIn.setBounds(450, 600, 200, 75);
+		signIn.setBounds(50, 175, 200, 75);
 		signIn.setFocusable(false);
 		signIn.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		signIn.addActionListener(this);
-		signIn.setBackground(darkBlue);
+		signIn.setBackground(Color.white);
 		
 		frame.add(aboutUs);
 		frame.add(logIn);
 		frame.add(signIn); 
-		frame.add(logOut); 
+		frame.add(logOut);
+		frame.add(mainImage);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
