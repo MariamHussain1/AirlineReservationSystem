@@ -92,7 +92,7 @@ public class TitlePage implements ActionListener {
 	public void actionPerformed(ActionEvent e) {	
 		if(e.getSource() == next) {
 			try {
-				Welcome welcomePage = new Welcome();
+				Menu menuPage = new Menu();
 			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
