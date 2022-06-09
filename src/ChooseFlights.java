@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 public class ChooseFlights implements ActionListener{
@@ -18,7 +19,7 @@ public class ChooseFlights implements ActionListener{
 	JButton back = new JButton("BACK");  	
 	JButton domestic = new JButton("Domestic");
 	JButton international = new JButton("International");
-	Icon pic = new ImageIcon("Images/chooseFlights.jpg");
+	Icon pic = new ImageIcon("Images/chooseFlights.png");
 	JLabel background = new JLabel(pic);
 	
 	Color grey = new Color(211, 211, 211);
@@ -78,31 +79,52 @@ public class ChooseFlights implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {	
 		if(e.getSource() == international) {
-				frame.dispose();
-				try {
-					AboutUs aboutUs = new AboutUs();
-				} catch (MalformedURLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 
+			Object [] possibleValues = { "Economy", "Business", "First Class"};
+			Object selectedValue = JOptionPane.showInputDialog(null,"You have chosen an International Flight, Choose your flight type.", "Flight Type",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[0]);
+	        
+	        if (selectedValue == possibleValues[0]) {
+	        	//frame.dispose();
+	        	System.out.println("Economy class in a work in progress"); 
+	        }
+	        else if (selectedValue == possibleValues[1]) {
+	        	System.out.println("Business class is a work in progress"); 
+	        }	
+	        else if (selectedValue == possibleValues[2]) {
+	        	System.out.println("First class class is a work in progress"); 
+
+	        }
 			
-			frame.dispose();
 			}
-		if(e.getSource() == back) {
-			frame.dispose();
-			try {
-				Welcome welcome = new Welcome();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		if(e.getSource() == domestic) {
+			Object [] possibleValues = { "Economy", "Business", "First Class"};
+			Object selectedValue = JOptionPane.showInputDialog(null,"You have chosen an International Flight, Choose your flight type.", "Flight Type",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[0]);
+	        
+	        if (selectedValue == possibleValues[0]) {
+	        	//frame.dispose();
+	        	System.out.println("Economy class is a work in progress"); 
+	        }
+	        else if (selectedValue == possibleValues[1]) {
+	        	System.out.println("Business class is a work in progress"); 
+	        }	
+	        else if (selectedValue == possibleValues[2]) {
+	        	System.out.println("First class is a work in progress"); 
+
+	        
 			} 
 		
 		frame.dispose();
 		}
+		if(e.getSource() == back) {
+			try {
+				Welcome wel2 = new Welcome();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+			frame.dispose();
+			
+		}
 		}
 	}
-
-		
-
 
 
