@@ -64,7 +64,7 @@ public class LogIn implements ActionListener {
            {  
         	   frame.dispose();
                try {
-				AppWelcome welcome = new AppWelcome();
+				Welcome welcome = new Welcome();
 			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
