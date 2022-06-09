@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 public class ChooseFlights implements ActionListener{
-	
+	public String [][] internationalInventory = { {"Paris", "Berlin", "Turkey", "Venice"} ,{"2:00AM", "7:00PM", "6:30AM", "4:00PM"}}; 
+
 	JFrame frame = new JFrame();  //adding the frame
 	JButton back = new JButton("BACK");  	
 	JButton domestic = new JButton("Domestic");
