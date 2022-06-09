@@ -24,7 +24,7 @@ public class Welcome implements ActionListener{
 	JPanel secondGreyPanel = new JPanel();
 	Icon pfp = new ImageIcon("Images/profile.jpg");
 	JButton profile = new JButton(pfp);
-	Icon flight = new ImageIcon("Images/flight.png");
+	Icon flight = new ImageIcon("Images/chooseFlights.png");
 	JButton bookFlight = new JButton(flight);
 	Icon lottery = new ImageIcon("Images/lottery.png");
 	JButton PlayLottery = new JButton(lottery);
@@ -145,17 +145,17 @@ public class Welcome implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {	
-		if(e.getSource() == profile) {
-				frame.dispose();
-				try {
-					AboutUs aboutUs = new AboutUs();
-				} catch (MalformedURLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 
-			
-			frame.dispose();
-			}
+//		if(e.getSource() == profile) {
+//				frame.dispose();
+//				try {
+//					AboutUs aboutUs = new AboutUs();
+//				} catch (MalformedURLException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				} 
+//			
+//			frame.dispose();
+//			}
 		if(e.getSource() == bookFlight) {
 			frame.dispose();
 			try {
@@ -182,6 +182,5 @@ public class Welcome implements ActionListener{
 	}
 
 		
-
 
 
