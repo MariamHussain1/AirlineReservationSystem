@@ -13,9 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+
+
 public class ChooseFlights implements ActionListener{
 	public String [][] internationalInventory = { {"Paris", "Berlin", "Turkey", "Venice"} ,{"2:00AM", "7:00PM", "6:30AM", "4:00PM"}}; 
-
+	public String[][] domesticInv = {{"QC, Montreal", "BC, Victoria", "NVT, Iqaluit", "NS, Halifax"},{"9:00AM", "5:45PM", "8:30PM", "11:50AM"}};
 	JFrame frame = new JFrame();  //adding the frame
 	JButton back = new JButton("BACK");  	
 	JButton domestic = new JButton("Domestic");
@@ -80,40 +82,41 @@ public class ChooseFlights implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {	
 		if(e.getSource() == international) {
-			Object [] possibleValues = { "Economy", "Business", "First Class"};
-			Object selectedValue = JOptionPane.showInputDialog(null,"You have chosen an International Flight, Choose your flight type.", "Flight Type",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[0]);
-	        
+			
+	
+			Object [] possibleValues = { "Paris, France 2AM", "Berlin, Germany 7PM", "Turkey 630AM", "Venice, Italy 4PM"};
+			Object selectedValue = JOptionPane.showInputDialog(null,"You have chosen an International Flight, Choose your destination.", "Destination",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[3]);
+			frame.dispose();
 	        if (selectedValue == possibleValues[0]) {
-	        	//frame.dispose();
-	        	System.out.println("Economy class in a work in progress"); 
+	        	
 	        }
+	        	
 	        else if (selectedValue == possibleValues[1]) {
-	        	System.out.println("Business class is a work in progress"); 
+	        	
 	        }	
-	        else if (selectedValue == possibleValues[2]) {
-	        	System.out.println("First class class is a work in progress"); 
+	        else if (selectedValue == possibleValues[2]) { 
 
 	        }
-			
+	        else if (selectedValue == possibleValues[3]) { 
+
+	        }
 			}
 		if(e.getSource() == domestic) {
-			Object [] possibleValues = { "Economy", "Business", "First Class"};
-			Object selectedValue = JOptionPane.showInputDialog(null,"You have chosen an International Flight, Choose your flight type.", "Flight Type",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[0]);
-	        
-	        if (selectedValue == possibleValues[0]) {
-	        	//frame.dispose();
-	        	System.out.println("Economy class is a work in progress"); 
-	        }
-	        else if (selectedValue == possibleValues[1]) {
-	        	System.out.println("Business class is a work in progress"); 
-	        }	
-	        else if (selectedValue == possibleValues[2]) {
-	        	System.out.println("First class is a work in progress"); 
+			Object [] possibleValues = { "Montreal 9AM", "Victoria 5:45 PM", "Iquluit 830PM", "Halifax 11:50AM"};
+			Object selectedValue = JOptionPane.showInputDialog(null,"You have chosen a Domestic Flight, Choose your destination.", "Destination",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[3]);
+			if (selectedValue == possibleValues[0]) {
 
-	        
-			} 
-		
-		frame.dispose();
+			}
+
+			else if (selectedValue == possibleValues[1]) {
+
+			}	
+			else if (selectedValue == possibleValues[2]) { 
+
+			}
+			else if (selectedValue == possibleValues[3]) { 
+
+			}
 		}
 		if(e.getSource() == back) {
 			try {
@@ -127,5 +130,8 @@ public class ChooseFlights implements ActionListener{
 		}
 		}
 	}
+
+		
+
 
 
