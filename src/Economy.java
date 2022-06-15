@@ -9,24 +9,16 @@ public class Economy extends Plane {
 			
 		}
 	
-	public Economy(double price){
-    
-        this(time, from, destination, flightType, "Economy", price);
-    }
-	
-	public String getDestination() {
-		return destination;
-	}
 	
 	public void setPrice(double price) {
-		if(flightType.equals("Domestic")) {
+		if(getFlightType().equals("Domestic")) {
 			price = 200;
 			if(under12 == true){
 				price = 100;
 			}
 		}
 		
-		else if(flightType.equals("International")){
+		else if(getFlightType().equals("International")){
 			price = 1500;
 			if(under12 == true){
 				price = 1000;
