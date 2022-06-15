@@ -9,24 +9,16 @@ public class Business extends Plane {
 			
 		}
 	
-	public Business(double price){
-    
-        this(time, from, destination, flightType, "Business", price);
-    }
-	
-	public String getDestination() {
-		return destination;
-	}
 	
 	public void setPrice(double price) {
-		if(flightType.equals("Domestic")) {
+		if(getFlightType().equals("Domestic")) {
 			price = 2000;
 			if(under12 == true){
 				price = 1400;
 			}
 		}
 		
-		else if(flightType.equals("International")){
+		else if(getFlightType().equals("International")){
 			price = 3000;
 			if(under12 == true){
 				price = 2400;
