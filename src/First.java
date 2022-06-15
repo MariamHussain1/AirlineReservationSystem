@@ -9,24 +9,16 @@ public class First extends Plane {
 			
 		}
 	
-	public First(double price){
-    
-        this(time, from, destination, flightType, "First", price);
-    }
-	
-	public String getDestination() {
-		return destination;
-	}
 	
 	public void setPrice(double price) {
-		if(flightType.equals("Domestic")) {
+		if(getFlightType().equals("Domestic")) {
 			price = 4200;
 			if(under12 == true){
 				price = 3600;
 			}
 		}
 		
-		else if(flightType.equals("International")){
+		else if(getFlightType().equals("International")){
 			price = 5800;
 			if(under12 == true){
 				price = 5000;
