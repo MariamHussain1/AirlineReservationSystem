@@ -1,11 +1,12 @@
 
 public class Business extends Plane {
 	
-	private double price;
-	private boolean under12 = false;
-	public Business(String time, String from, String destination, String flightType, String flightClass, double price) {
+	public double price;
+	public double childPrice;
+	private int seats;
+	private int childSeats;
+	public Business(String time, String from, String destination, String flightType, String flightClass, int seats, int childSeats) {
 		super(time, from, destination, flightType, flightClass);
-		this.price = price;
 			
 		}
 	
@@ -13,21 +14,24 @@ public class Business extends Plane {
 	public void setPrice(double price) {
 		if(getFlightType().equals("Domestic")) {
 			price = 2000;
-			if(under12 == true){
-				price = 1400;
-			}
 		}
-		
 		else if(getFlightType().equals("International")){
 			price = 3000;
-			if(under12 == true){
-				price = 2400;
-			}
 		}
+			
+			
+		}
+	public void setPrice(double childPrice){
+		if(getFlightType().equals("Domestic")) {
+			childPrice = 1400;
+		}
+		else if(getFlightType().equals("International")){
+			price = 2400;
+		}
+		
 	}
-	
-	public double getPrice(){
-		return price;
+	public double getPrice(){	
+		return childSeats*childPrice + (seats-childSeats)*price;
 	}
 	
 	
