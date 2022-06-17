@@ -1,11 +1,10 @@
-import java.awt.Color;
+iimport java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,12 +15,13 @@ public class LogIn implements ActionListener {
 	JFrame frame = new JFrame();
 	JButton next = new JButton("Sign Up");
 	Color darkBlue = new Color(20, 64, 109);
-	Color white = new Color(255, 255, 255);
+	Color white =  new Color(255, 255, 255);
+	public static String username;
+	public static String pswrd;
 	JLabel userName, password; 
     JTextField userTf, pwrdTf;
     
 	public LogIn () throws MalformedURLException{
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(true);
 		frame.setTitle("Airline Reservation System: Sign In"); 
@@ -29,7 +29,7 @@ public class LogIn implements ActionListener {
 		
 
 		frame.pack();
-		frame.setSize(600, 250);
+		frame.setSize(600, 350);
 
 		userName = new JLabel("Enter Username:");  
 		password = new JLabel("Enter Password:");  
@@ -58,8 +58,8 @@ public class LogIn implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == next)  
         {  
-           String username = userTf.getText();  
-           String pswrd = pwrdTf.getText();  
+           username = userTf.getText();  
+           pswrd = pwrdTf.getText();  
            if (checkLogin(username, pswrd))  
            {  
         	   frame.dispose();
