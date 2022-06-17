@@ -8,24 +8,32 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 public class BookTickets implements ActionListener{
 	
-	String flightClass;
 	
 	JFrame frame = new JFrame();  //adding the frame
-	JButton back = new JButton("BACK");  
+	JButton back = new JButton("BACK");
+	JButton confirm = new JButton("Confirm");
 	JLabel title = new JLabel();
-	JButton eco = new JButton("Economy");
+	JLabel text = new JLabel();
+	JButton eco = new JButton(LogIn.username);
 	JButton bus = new JButton("Business");
 	JButton fir = new JButton("First Class");
-	JTextField jt = new JTextField();
 	
 	Color grey = new Color(211, 211, 211);
 	Color grayBlue = new Color(102, 153, 204);
 	Color darkBlue = new Color(20, 64, 109);
 	Color white = new Color(255, 255, 255);
+	public static String flightClass;
+	public static String pass;
+	public static String children;
+	JLabel p = new JLabel("Passenger Count");
+	JLabel p2 = new JLabel("#Of Child Passengers (under 12)");
+    JTextField passengers = new JTextField(30);
+    JTextField child = new JTextField(30);
 	
 	Border border = BorderFactory.createLineBorder(darkBlue, 5);
 	
@@ -43,7 +51,7 @@ public class BookTickets implements ActionListener{
 	    
 	    //adding economy class button
 	    frame.getContentPane().add(eco);
-	    eco.setBounds(50, 130, 150, 100);
+	    eco.setBounds(50, 200, 150, 100);
 		eco.setFocusable(false);
 		eco.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		eco.addActionListener(this);
@@ -55,7 +63,7 @@ public class BookTickets implements ActionListener{
 	    
 	    //adding business class button
 	    frame.getContentPane().add(bus);
-	    bus.setBounds(50, 240, 150, 100);
+	    bus.setBounds(50, 310, 150, 100);
 		bus.setFocusable(false);
 		bus.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		bus.addActionListener(this);
@@ -65,11 +73,9 @@ public class BookTickets implements ActionListener{
 	    frame.pack();
 	    
 	    
-	  
-	    
 	    //adding firstclass button
 	    frame.getContentPane().add(fir);
-	    fir.setBounds(50, 350, 150, 100);
+	    fir.setBounds(50, 420, 150, 100);
 	    fir.setFocusable(false);
 	    fir.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 	    fir.addActionListener(this);
@@ -89,8 +95,26 @@ public class BookTickets implements ActionListener{
 		//add the title
 		title.setText("Book Tickets");
 		title.setFont(new Font("Times New Roman", Font.BOLD, 80));
-		title.setBounds(230,-230,650,650);
+		title.setBounds(130,-230,650,650);
 		title.setForeground(grayBlue);
+		
+		//add label
+		text.setText("Choose Flight Class");
+		text.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		text.setBounds(50,-140,500,650);
+		text.setForeground(grayBlue);
+		
+		//add textfield
+		p.setBounds(300, 150, 200, 30);
+		p2.setBounds(300, 250, 200, 30);
+		  
+		passengers.setBounds(300, 200, 200, 30);  
+		child.setBounds(300, 300, 200, 30); 
+		
+		confirm.setBounds(300, 350, 100, 50);
+		confirm.setFocusable(false);
+		confirm.addActionListener(this);
+		confirm.setBackground(grayBlue);
 		
 	
 			
@@ -99,39 +123,91 @@ public class BookTickets implements ActionListener{
 	    frame.pack();
 	    frame.setSize(900,800);
 	
+	    frame.add(text);
 		frame.add(back);
 		frame.add(title);
 		frame.add(eco);
 		frame.add(bus);
 		frame.add(fir);
-	
+		frame.add(p);
+		frame.add(passengers); 
+		frame.add(p2);
+		frame.add(child);
+		frame.add(confirm);
 		
 		
 			
 	}
-	
-	public void actionPerformed(ActionEvent e) {	
-		if(e.getSource() == bus) {
-				//frame.dispose();
-			flightClass = "Business";
+	private boolean checkInt(String str) {
+		boolean flag = true; 
+		for(int i = 0; i < str.length(); i++) {
+			char cur = str.charAt(i);
+			if(!(Character.isDigit(cur))) {
+				flag = false;
+			}
+		}
+		
+		return flag;
+		
 			
-			frame.dispose();
+		}
+	
+		
+	
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == confirm)  {  
+           pass = passengers.getText();  
+           children = child.getText();  
+           if (checkInt(pass)&&checkInt(children))  
+           {  
+        	   frame.dispose();
+               //try {
+				//Welcome welcome = new Welcome();
+			//} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				//e1.printStackTrace();
+			//} 
+           } 
+           else {
+        	   JOptionPane.showMessageDialog(confirm, "Input is invalid");  
+            	 passengers.setText("");  
+              	 child.setText("");  
+               }   
+		}
+		if(e.getSource() == bus) {
+				
+			flightClass = "Business";
+			bus.setBackground(darkBlue);
+			eco.setBackground(grayBlue);
+			fir.setBackground(grey);
+			System.out.println(flightClass);
+			
+			
 			}
 		if(e.getSource() == fir) {
-			frame.dispose();
-			flightClass = "First";
 			
-		
-		frame.dispose();
+			flightClass = "First";
+			fir.setBackground(darkBlue);
+			bus.setBackground(Color.white);
+			eco.setBackground(grayBlue);
+			System.out.println(flightClass);
+			
+	
 		}
 		if(e.getSource() == eco) {
-			frame.dispose();
+		
 			flightClass = "Economy";
+			eco.setBackground(darkBlue);
+			fir.setBackground(grey);
+			bus.setBackground(Color.white);
+			System.out.println(flightClass);
+			
 		}
 		if(e.getSource() == back) {
 			frame.dispose();
 			try {
-				Menu menu = new Menu();
+				ChooseFlights flights = new ChooseFlights();
 			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -142,5 +218,6 @@ public class BookTickets implements ActionListener{
 		}
 	
 }
+
 
 		
