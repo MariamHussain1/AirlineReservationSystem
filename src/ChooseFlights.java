@@ -22,7 +22,7 @@ public class ChooseFlights implements ActionListener{
 	JButton back = new JButton("BACK");  	
 	JButton domestic = new JButton("Domestic");
 	JButton international = new JButton("International");
-	Icon pic = new ImageIcon("Images/chooseFlights.png");
+	Icon pic = new ImageIcon("Images/chooseFlights.jpg");
 	JLabel background = new JLabel(pic);
 	
 	Color grey = new Color(211, 211, 211);
@@ -91,7 +91,7 @@ public class ChooseFlights implements ActionListener{
 				String destination = internationalInventory[0][0]; 
 				String time = internationalInventory[1][0]; 
 				try {
-					ChooseFlights2 booking = new ChooseFlights2(destination, time);
+					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
 					e1.printStackTrace();
 				} 
@@ -101,7 +101,7 @@ public class ChooseFlights implements ActionListener{
 	        	String destination = internationalInventory[0][1]; 
 				String time = internationalInventory[1][1]; 
 				try {
-					ChooseFlights2 booking = new ChooseFlights2(destination, time);
+					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
 					e1.printStackTrace();
 				} 
@@ -110,7 +110,7 @@ public class ChooseFlights implements ActionListener{
 	        	String destination = internationalInventory[0][2]; 
 				String time = internationalInventory[1][2]; 
 				try {
-					ChooseFlights2 booking = new ChooseFlights2(destination, time);
+					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
 					e1.printStackTrace();
 				} 
@@ -120,7 +120,7 @@ public class ChooseFlights implements ActionListener{
 	        	String destination = internationalInventory[0][3]; 
 				String time = internationalInventory[1][3]; 
 				try {
-					ChooseFlights2 booking = new ChooseFlights2(destination, time);
+					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
 					e1.printStackTrace();
 				} 
@@ -135,7 +135,7 @@ public class ChooseFlights implements ActionListener{
 				String destination = domesticInv[0][0]; 
 				String time = domesticInv[1][0]; 
 				try {
-					ChooseFlights2 booking = new ChooseFlights2(destination, time);
+					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
 					e1.printStackTrace();
 				} 
@@ -145,7 +145,7 @@ public class ChooseFlights implements ActionListener{
 				String destination = domesticInv[0][1]; 
 				String time = domesticInv[1][1]; 
 				try {
-					ChooseFlights2 booking = new ChooseFlights2(destination, time);
+					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
 					e1.printStackTrace();
 				} 
@@ -154,7 +154,7 @@ public class ChooseFlights implements ActionListener{
 				String destination = domesticInv[0][2]; 
 				String time = domesticInv[1][2]; 
 				try {
-					ChooseFlights2 booking = new ChooseFlights2(destination, time);
+					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
 					e1.printStackTrace();
 				} 
@@ -163,7 +163,7 @@ public class ChooseFlights implements ActionListener{
 				String destination = domesticInv[0][3]; 
 				String time = domesticInv[1][3]; 
 				try {
-					ChooseFlights2 booking = new ChooseFlights2(destination, time);
+					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
 					e1.printStackTrace();
 				} 
