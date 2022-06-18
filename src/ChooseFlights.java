@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 
+
 public class ChooseFlights implements ActionListener{
 	public String [][] internationalInventory = { {"Paris", "Berlin", "Turkey", "Venice"} ,{"2:00AM", "7:00PM", "6:30AM", "4:00PM"}}; 
 	public String[][] domesticInv = {{"QC, Montreal", "BC, Victoria", "NVT, Iqaluit", "NS, Halifax"},{"9:00AM", "5:45PM", "8:30PM", "11:50AM"}};
@@ -22,7 +23,7 @@ public class ChooseFlights implements ActionListener{
 	JButton back = new JButton("BACK");  	
 	JButton domestic = new JButton("Domestic");
 	JButton international = new JButton("International");
-	Icon pic = new ImageIcon("Images/chooseFlights.jpg");
+	Icon pic = new ImageIcon("Images/chooseFlights.png");
 	JLabel background = new JLabel(pic);
 	
 	Color grey = new Color(211, 211, 211);
@@ -31,7 +32,9 @@ public class ChooseFlights implements ActionListener{
 	Color white = new Color(255, 255, 255);
 	
 	Border border = BorderFactory.createLineBorder(darkBlue, 5);
-	
+	public static String flightType; 
+	public static String destination; 
+	public static String time; 
 	public ChooseFlights () throws MalformedURLException{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
@@ -83,13 +86,13 @@ public class ChooseFlights implements ActionListener{
 	public void actionPerformed(ActionEvent e) {	
 		if(e.getSource() == international) {
 			
-	
+			flightType = "International"; 
 			Object [] possibleValues = { "Paris, France 2AM", "Berlin, Germany 7PM", "Turkey 630AM", "Venice, Italy 4PM"};
 			Object selectedValue = JOptionPane.showInputDialog(null,"You have chosen an International Flight, Choose your destination.", "Destination",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[3]);
 			frame.dispose();
 	        if (selectedValue == possibleValues[0]) {
-				String destination = internationalInventory[0][0]; 
-				String time = internationalInventory[1][0]; 
+				 destination = internationalInventory[0][0]; 
+				 time = internationalInventory[1][0]; 
 				try {
 					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
@@ -98,8 +101,8 @@ public class ChooseFlights implements ActionListener{
 	        }
 	        	
 	        else if (selectedValue == possibleValues[1]) {
-	        	String destination = internationalInventory[0][1]; 
-				String time = internationalInventory[1][1]; 
+	        	 destination = internationalInventory[0][1]; 
+				 time = internationalInventory[1][1]; 
 				try {
 					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
@@ -107,8 +110,8 @@ public class ChooseFlights implements ActionListener{
 				} 
 	        }	
 	        else if (selectedValue == possibleValues[2]) { 
-	        	String destination = internationalInventory[0][2]; 
-				String time = internationalInventory[1][2]; 
+	        	 destination = internationalInventory[0][2]; 
+				 time = internationalInventory[1][2]; 
 				try {
 					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
@@ -117,8 +120,8 @@ public class ChooseFlights implements ActionListener{
 	        }	
 	        
 	        else if (selectedValue == possibleValues[3]) { 
-	        	String destination = internationalInventory[0][3]; 
-				String time = internationalInventory[1][3]; 
+	        	 destination = internationalInventory[0][3]; 
+				 time = internationalInventory[1][3]; 
 				try {
 					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
@@ -128,12 +131,13 @@ public class ChooseFlights implements ActionListener{
 	        }
 			
 		if(e.getSource() == domestic) {
+			flightType = "Domestic"; 
 			Object [] possibleValues = { "Montreal 9AM", "Victoria 5:45 PM", "Iquluit 830PM", "Halifax 11:50AM"};
 			Object selectedValue = JOptionPane.showInputDialog(null,"You have chosen a Domestic Flight, Choose your destination.", "Destination",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[3]);
 			frame.dispose();
 			if (selectedValue == possibleValues[0]) {
-				String destination = domesticInv[0][0]; 
-				String time = domesticInv[1][0]; 
+				destination = domesticInv[0][0]; 
+				time = domesticInv[1][0]; 
 				try {
 					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
@@ -142,8 +146,8 @@ public class ChooseFlights implements ActionListener{
 			}
 
 			else if (selectedValue == possibleValues[1]) {
-				String destination = domesticInv[0][1]; 
-				String time = domesticInv[1][1]; 
+				 destination = domesticInv[0][1]; 
+				 time = domesticInv[1][1]; 
 				try {
 					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
@@ -151,8 +155,8 @@ public class ChooseFlights implements ActionListener{
 				} 
 			}	
 			else if (selectedValue == possibleValues[2]) { 
-				String destination = domesticInv[0][2]; 
-				String time = domesticInv[1][2]; 
+				 destination = domesticInv[0][2]; 
+				 time = domesticInv[1][2]; 
 				try {
 					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
@@ -160,8 +164,8 @@ public class ChooseFlights implements ActionListener{
 				} 
 			}
 			else if (selectedValue == possibleValues[3]) { 
-				String destination = domesticInv[0][3]; 
-				String time = domesticInv[1][3]; 
+				 destination = domesticInv[0][3]; 
+				 time = domesticInv[1][3]; 
 				try {
 					BookTickets booking = new BookTickets(destination, time);
 				} catch (MalformedURLException e1) {
