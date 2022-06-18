@@ -1,26 +1,31 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton; 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.border.Border;
+
 public class BookTickets implements ActionListener{
 	
 	
 	JFrame frame = new JFrame();  //adding the frame
+	JPanel panel = new JPanel();
 	JButton finalConfirm = new JButton("Confirm");
 	JButton confirm = new JButton("Enter");
 	JButton goBack = new JButton("Back");
 
 	JLabel title = new JLabel();
 	JLabel text = new JLabel();
+	JLabel seatLabel = new JLabel();
 	JButton eco = new JButton("Economy");
 	JButton bus = new JButton("Business");
 	JButton fir = new JButton("First Class");
@@ -32,7 +37,7 @@ public class BookTickets implements ActionListener{
 	public static String flightClass;
 	public static String pass;
 	public static String children;
-	JLabel p = new JLabel("Passenger Count");
+	JLabel p = new JLabel("Adult Passengers");
 	JLabel p2 = new JLabel("#Of Child Passengers (under 12)");
     JTextField passengers = new JTextField(30);
     JTextField child = new JTextField(30);
@@ -106,9 +111,9 @@ public class BookTickets implements ActionListener{
 		
 		//add label
 		text.setText("Choose Flight Class");
-		text.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		text.setBounds(50,-140,500,650);
-		text.setForeground(grayBlue);
+		text.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		text.setBounds(50,-160,500,650);
+		text.setForeground(Color.black);
 		
 		//add textfield
 		p.setBounds(300, 150, 200, 30);
@@ -127,12 +132,38 @@ public class BookTickets implements ActionListener{
 	    goBack.setFont(new Font("Times New Roman", Font.ITALIC, 30));
 	    goBack.addActionListener(this);
 	    goBack.setBackground(white);
+	    
+	    seatLabel.setText("Choose Seats");
+		seatLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		seatLabel.setBounds(550,70,200,200);
+		seatLabel.setForeground(Color.black);
+	    
+		char l = 0;
+	    int k = 0;
+	    panel.setBounds(550,200,300,300);
+	    panel.setLayout(new GridLayout(4,5,3,3));  
+	      JToggleButton[][] seats = new JToggleButton[4][5];
+	      for(int i = 0; i<4; i++) {
+	    	  for(int j = 0; j<5; j++) {
+	    		  k++;
+	    		  seats[i][j] = new JToggleButton(l+""+k);
+	    		  seats[i][j].addActionListener(new ActionListener() {
+	    			  @Override
+	    		      public void actionPerformed(ActionEvent e) {
+	    		            //JOptionPane.showMessageDialog(frame, ((JToggleButton)e.getSource()).isSelected());
+	    		         }
+	    		      });
+	    		      panel.add(seats[i][j]);
+	    		      frame.getContentPane().add(panel);    
+	    		   }
+	    		  }
 			
 	    
 		frame.getContentPane().setBackground(Color.white);
 	    frame.pack();
 	    frame.setSize(900,800);
-	
+	    
+	    frame.add(seatLabel);
 	    frame.add(text);
 		frame.add(title);
 		frame.add(eco);
@@ -144,34 +175,15 @@ public class BookTickets implements ActionListener{
 		frame.add(child);
 		frame.add(confirm);
 		frame.add(finalConfirm); 
-		frame.add(goBack); 
+		frame.add(goBack);
+		frame.add(panel);
+		
 
 		
 		
 			
 	}
 	
-      private static void createUI(final JFrame frame){  
-      JPanel panel = new JPanel();
-      char l = 0;
-      int k = 0;
-      panel.setLayout(new GridLayout(4,5,3,3));  
-      JToggleButton[][] seats = new JToggleButton[4][5];
-      for(int i = 0; i<4; i++) {
-    	  for(int j = 0; j<5; j++) {
-    		  k++;
-    		  seats[i][j] = new JToggleButton(l+""+k);
-    		  seats[i][j].addActionListener(new ActionListener() {
-    			  @Override
-    		         public void actionPerformed(ActionEvent e) {
-    		            //JOptionPane.showMessageDialog(frame, ((JToggleButton)e.getSource()).isSelected());
-    		         }
-    		      });
-    		      panel.add(seats[i][j]);
-    		      frame.getContentPane().add(panel);    
-    		   }
-    		  }
-    	  }
 	private boolean checkInt(String str) {
 		boolean flag = true; 
 		
@@ -248,6 +260,7 @@ public class BookTickets implements ActionListener{
 				}
 			if (flightClass.equals("Economy")) {
 				Economy plane = new Economy(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
+				System.out.println(plane.getPrice());
 
 				}
 				
@@ -307,6 +320,9 @@ public class BookTickets implements ActionListener{
 		}
 	
 
+
+
+		
 
 
 		
