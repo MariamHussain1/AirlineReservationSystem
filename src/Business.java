@@ -1,4 +1,3 @@
-
 public class Business extends Plane {
 	
 	public double price;
@@ -7,16 +6,19 @@ public class Business extends Plane {
 	private int childSeats;
 	public Business(String time, String from, String destination, String flightType, String flightClass, int seats, int childSeats) {
 		super(time, from, destination, flightType, flightClass);
-			
+		setPrice1(seats, childSeats); 	
 		}
 	
 	
-	public void setPrice(double price) {
+	public void setPrice1(int seats, int childSeats) {
 		if(getFlightType().equals("Domestic")) {
-			price = 2000;
+			price = 2000*seats;
+			System.out.println(price);
+			
+			System.out.println("here");
 		}
 		else if(getFlightType().equals("International")){
-			price = 3000;
+			price = 3000*seats;
 		}
 			
 			
