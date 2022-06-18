@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
+import javax.swing.JButton; 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -15,8 +15,8 @@ public class BookTickets implements ActionListener{
 	
 	
 	JFrame frame = new JFrame();  //adding the frame
-	JButton back = new JButton("BACK");
-	JButton confirm = new JButton("Confirm");
+	JButton back = new JButton("Confirm");
+	JButton confirm = new JButton("Enter");
 	JLabel title = new JLabel();
 	JLabel text = new JLabel();
 	JButton eco = new JButton(LogIn.username);
@@ -34,10 +34,13 @@ public class BookTickets implements ActionListener{
 	JLabel p2 = new JLabel("#Of Child Passengers (under 12)");
     JTextField passengers = new JTextField(30);
     JTextField child = new JTextField(30);
-	
+	//JButton confirm2 = new JButton(); 
+    
 	Border border = BorderFactory.createLineBorder(darkBlue, 5);
 	
-	
+	String destinationChosen = ChooseFlights.destination; 
+	String timeChosen = ChooseFlights.time; 
+	String flightTypeChosen = ChooseFlights.flightType; 
 	public BookTickets (String destination, String time) throws MalformedURLException{
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,7 +127,6 @@ public class BookTickets implements ActionListener{
 	    frame.setSize(900,800);
 	
 	    frame.add(text);
-		frame.add(back);
 		frame.add(title);
 		frame.add(eco);
 		frame.add(bus);
@@ -140,11 +142,16 @@ public class BookTickets implements ActionListener{
 	}
 	private boolean checkInt(String str) {
 		boolean flag = true; 
+		
+		int strInt = Integer.parseInt(str); 
 		for(int i = 0; i < str.length(); i++) {
 			char cur = str.charAt(i);
-			if(!(Character.isDigit(cur))) {
+			if(!(Character.isDigit(cur))|| strInt > 20) {
+				
 				flag = false;
 			}
+			
+
 		}
 		
 		return flag;
@@ -161,7 +168,8 @@ public class BookTickets implements ActionListener{
            children = child.getText();  
            if (checkInt(pass)&&checkInt(children))  
            {  
-        	   frame.dispose();
+        	   
+        	   //frame.dispose();
                //try {
 				//Welcome welcome = new Welcome();
 			//} catch (MalformedURLException e1) {
@@ -182,6 +190,13 @@ public class BookTickets implements ActionListener{
 			eco.setBackground(grayBlue);
 			fir.setBackground(grey);
 			System.out.println(flightClass);
+			frame.add(back);
+
+			if(e.getSource() == back) {
+				
+				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass); 
+				} 
+			
 			
 			
 			}
@@ -192,6 +207,9 @@ public class BookTickets implements ActionListener{
 			bus.setBackground(Color.white);
 			eco.setBackground(grayBlue);
 			System.out.println(flightClass);
+			if(e.getSource() == back) {
+				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass); 
+				} 
 			
 	
 		}
@@ -202,22 +220,18 @@ public class BookTickets implements ActionListener{
 			fir.setBackground(grey);
 			bus.setBackground(Color.white);
 			System.out.println(flightClass);
+			if(e.getSource() == back) {
+				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass); 
+				} 
+			
 			
 		}
-		if(e.getSource() == back) {
-			frame.dispose();
-			try {
-				ChooseFlights flights = new ChooseFlights();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} 
-		
+
 		frame.dispose();
 		}
 		}
 	
-}
+
 
 
 		
