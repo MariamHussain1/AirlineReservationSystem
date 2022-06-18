@@ -150,6 +150,28 @@ public class BookTickets implements ActionListener{
 		
 			
 	}
+	
+      private static void createUI(final JFrame frame){  
+      JPanel panel = new JPanel();
+      char l = 0;
+      int k = 0;
+      panel.setLayout(new GridLayout(4,5,3,3));  
+      JToggleButton[][] seats = new JToggleButton[4][5];
+      for(int i = 0; i<4; i++) {
+    	  for(int j = 0; j<5; j++) {
+    		  k++;
+    		  seats[i][j] = new JToggleButton(l+""+k);
+    		  seats[i][j].addActionListener(new ActionListener() {
+    			  @Override
+    		         public void actionPerformed(ActionEvent e) {
+    		            //JOptionPane.showMessageDialog(frame, ((JToggleButton)e.getSource()).isSelected());
+    		         }
+    		      });
+    		      panel.add(seats[i][j]);
+    		      frame.getContentPane().add(panel);    
+    		   }
+    		  }
+    	  }
 	private boolean checkInt(String str) {
 		boolean flag = true; 
 		
