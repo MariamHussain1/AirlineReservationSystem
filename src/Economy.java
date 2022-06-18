@@ -1,33 +1,39 @@
-
 public class Economy extends Plane {
 	
-	private double price;
-	private boolean under12 = false;
-	public Economy(String time, String from, String destination, String flightType, String flightClass, double price) {
+	public double price;
+	public double childPrice;
+	private int seats;
+	private int childSeats;
+	public Economy(String time, String from, String destination, String flightType, String flightClass, int seats, int childSeats) {
 		super(time, from, destination, flightType, flightClass);
-		this.price = price;
+		setPrice1(seats, childSeats); 	
+		}
+	
+	
+	public void setPrice1(int seats, int childSeats) {
+		if(getFlightType().equals("Domestic")) {
+			price = 2000*seats;
+			System.out.println(price);
+			
+			System.out.println("here");
+		}
+		else if(getFlightType().equals("International")){
+			price = 3000*seats;
+		}
+			
 			
 		}
-	
-	
-	public void setPrice(double price) {
+	public void setPrice(double childPrice){
 		if(getFlightType().equals("Domestic")) {
-			price = 200;
-			if(under12 == true){
-				price = 100;
-			}
+			childPrice = 1400;
+		}
+		else if(getFlightType().equals("International")){
+			price = 2400;
 		}
 		
-		else if(getFlightType().equals("International")){
-			price = 1500;
-			if(under12 == true){
-				price = 1000;
-			}
-		}
 	}
-	
-	public double getPrice(){
-		return price;
+	public double getPrice(){	
+		return childSeats*childPrice + (seats-childSeats)*price;
 	}
 	
 	
