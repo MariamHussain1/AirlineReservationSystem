@@ -15,11 +15,13 @@ public class BookTickets implements ActionListener{
 	
 	
 	JFrame frame = new JFrame();  //adding the frame
-	JButton back = new JButton("Confirm");
+	JButton finalConfirm = new JButton("Confirm");
 	JButton confirm = new JButton("Enter");
+	JButton goBack = new JButton("Back");
+
 	JLabel title = new JLabel();
 	JLabel text = new JLabel();
-	JButton eco = new JButton(LogIn.username);
+	JButton eco = new JButton("Economy");
 	JButton bus = new JButton("Business");
 	JButton fir = new JButton("First Class");
 	
@@ -34,6 +36,7 @@ public class BookTickets implements ActionListener{
 	JLabel p2 = new JLabel("#Of Child Passengers (under 12)");
     JTextField passengers = new JTextField(30);
     JTextField child = new JTextField(30);
+    boolean inputValid = false; 
 	//JButton confirm2 = new JButton(); 
     
 	Border border = BorderFactory.createLineBorder(darkBlue, 5);
@@ -89,11 +92,11 @@ public class BookTickets implements ActionListener{
 	    
 	
 	    //adding the back button 
-	    back.setBounds(50, 570, 150, 50);
-	    back.setFocusable(false);
-	    back.setFont(new Font("Times New Roman", Font.ITALIC, 30));
-	    back.addActionListener(this);
-	    back.setBackground(white);
+	    finalConfirm.setBounds(300, 570, 150, 50);
+	    finalConfirm.setFocusable(false);
+	    finalConfirm.setFont(new Font("Times New Roman", Font.ITALIC, 30));
+	    finalConfirm.addActionListener(this);
+	    finalConfirm.setBackground(white);
 	
 		//add the title
 		title.setText("Book Tickets");
@@ -119,7 +122,11 @@ public class BookTickets implements ActionListener{
 		confirm.addActionListener(this);
 		confirm.setBackground(grayBlue);
 		
-	
+	    goBack.setBounds(50, 570, 150, 50);
+	    goBack.setFocusable(false);
+	    goBack.setFont(new Font("Times New Roman", Font.ITALIC, 30));
+	    goBack.addActionListener(this);
+	    goBack.setBackground(white);
 			
 	    
 		frame.getContentPane().setBackground(Color.white);
@@ -136,6 +143,9 @@ public class BookTickets implements ActionListener{
 		frame.add(p2);
 		frame.add(child);
 		frame.add(confirm);
+		frame.add(finalConfirm); 
+		frame.add(goBack); 
+
 		
 		
 			
@@ -163,12 +173,16 @@ public class BookTickets implements ActionListener{
 	
 	
 	public void actionPerformed(ActionEvent e) {
+		
 		if (e.getSource() == confirm)  {  
+			//boolean inputValid = false; 
            pass = passengers.getText();  
            children = child.getText();  
+           try {
            if (checkInt(pass)&&checkInt(children))  
            {  
-        	   
+        	   System.out.println("true");
+        	   inputValid = true; 
         	   //frame.dispose();
                //try {
 				//Welcome welcome = new Welcome();
@@ -182,6 +196,11 @@ public class BookTickets implements ActionListener{
             	 passengers.setText("");  
               	 child.setText("");  
                }   
+           }
+           catch(Exception ee) {
+        	   JOptionPane.showMessageDialog(confirm, "Input is invalid");  
+
+           }
 		}
 		if(e.getSource() == bus) {
 				
@@ -190,16 +209,56 @@ public class BookTickets implements ActionListener{
 			eco.setBackground(grayBlue);
 			fir.setBackground(grey);
 			System.out.println(flightClass);
-			frame.add(back);
-
-			if(e.getSource() == back) {
-				
-				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass); 
-				} 
-			
 			
 			
 			}
+		if(e.getSource() == finalConfirm) {
+			try {
+			if ((flightClass.equals("Business")||flightClass.equals("First")||flightClass.equals("Economy")) && (inputValid)) {
+				
+				System.out.println("Here");
+				if (flightClass.equals("Business")) {
+				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
+				}
+			if (flightClass.equals("First")) {
+				First plane = new First(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
+
+				}
+			if (flightClass.equals("Economy")) {
+				Economy plane = new Economy(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
+
+				}
+				
+			
+			} 
+			
+
+			else {
+				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!");  
+			}
+			}
+			catch(Exception ee) {
+				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!");  
+
+			}
+			
+		}
+			
+
+		if(e.getSource() == goBack) {
+			
+			frame.dispose();
+			try {
+				Welcome newWel = new Welcome();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 			
+			}
+		
+		
+		
+		
 		if(e.getSource() == fir) {
 			
 			flightClass = "First";
@@ -207,9 +266,6 @@ public class BookTickets implements ActionListener{
 			bus.setBackground(Color.white);
 			eco.setBackground(grayBlue);
 			System.out.println(flightClass);
-			if(e.getSource() == back) {
-				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass); 
-				} 
 			
 	
 		}
@@ -220,14 +276,11 @@ public class BookTickets implements ActionListener{
 			fir.setBackground(grey);
 			bus.setBackground(Color.white);
 			System.out.println(flightClass);
-			if(e.getSource() == back) {
-				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass); 
-				} 
-			
+
 			
 		}
 
-		frame.dispose();
+		
 		}
 		}
 	
