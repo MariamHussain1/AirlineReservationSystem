@@ -44,6 +44,8 @@ public class BookTickets implements ActionListener{
     boolean inputValid = false; 
     int counter = 0;
     public static int flightPoints = 0;
+    public static int i;
+    public static int j;
 	//JButton confirm2 = new JButton(); 
     
 	Border border = BorderFactory.createLineBorder(darkBlue, 5);
@@ -145,14 +147,15 @@ public class BookTickets implements ActionListener{
 	    panel.setBounds(550,200,300,300);
 	    panel.setLayout(new GridLayout(4,5,3,3));  
 	      JToggleButton[][] seats = new JToggleButton[4][5];
-	      for(int i = 0; i<4; i++) {
-	    	  for(int j = 0; j<5; j++) {
+	      for(i = 0; i<4; i++) {
+	    	  for(j = 0; j<5; j++) {
 	    		  k++;
 	    		  seats[i][j] = new JToggleButton(l+""+k);
 	    		  seats[i][j].addActionListener(new ActionListener() {
 	    			  @Override
 	    		      public void actionPerformed(ActionEvent e) {
 	    				  counter++;
+	    				  seats[i][j].setSelected(false);
 	    		            //JOptionPane.showMessageDialog(frame, ((JToggleButton)e.getSource()).isSelected());
 	    		         }
 	    		      });
@@ -251,18 +254,20 @@ public class BookTickets implements ActionListener{
 			}
 		if(e.getSource() == finalConfirm) {
 			try {
-			if ((flightClass.equals("Business")||flightClass.equals("First")||flightClass.equals("Economy")) && (inputValid) && (counter<=((Integer.parseInt(children))+Integer.parseInt(pass)))) {
-				
+			if ((flightClass.equals("Business")||flightClass.equals("First")||flightClass.equals("Economy")) && (inputValid) && (counter==((Integer.parseInt(children))+Integer.parseInt(pass)))) {
+				counter = 0;
 				System.out.println("Here");
 				if (flightClass.equals("Business")) {
 				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
 				flightPoints += 200;
+				
+				
 				}
-			if (flightClass.equals("First")) {
+			    if (flightClass.equals("First")) {
 				First plane = new First(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
 				flightPoints += 200;
 				}
-			if (flightClass.equals("Economy")) {
+			    if (flightClass.equals("Economy")) {
 				Economy plane = new Economy(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
 				flightPoints += 200;
 				}
@@ -274,12 +279,21 @@ public class BookTickets implements ActionListener{
 			else {
 				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!"); 
 				counter = 0;
+				frame.dispose();
+				BookTickets t = new BookTickets(ChooseFlights.destination, ChooseFlights.time);
 				
 			}
 			}
 			catch(Exception ee) {
 				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!");
 				counter = 0;
+				try {
+					frame.dispose();
+					BookTickets t = new BookTickets(ChooseFlights.destination, ChooseFlights.time);
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 			
