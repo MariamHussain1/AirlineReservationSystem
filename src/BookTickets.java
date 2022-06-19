@@ -42,6 +42,8 @@ public class BookTickets implements ActionListener{
     JTextField passengers = new JTextField(30);
     JTextField child = new JTextField(30);
     boolean inputValid = false; 
+    int counter = 0;
+    public static int flightPoints = 0;
 	//JButton confirm2 = new JButton(); 
     
 	Border border = BorderFactory.createLineBorder(darkBlue, 5);
@@ -150,6 +152,7 @@ public class BookTickets implements ActionListener{
 	    		  seats[i][j].addActionListener(new ActionListener() {
 	    			  @Override
 	    		      public void actionPerformed(ActionEvent e) {
+	    				  counter++;
 	    		            //JOptionPane.showMessageDialog(frame, ((JToggleButton)e.getSource()).isSelected());
 	    		         }
 	    		      });
@@ -248,20 +251,20 @@ public class BookTickets implements ActionListener{
 			}
 		if(e.getSource() == finalConfirm) {
 			try {
-			if ((flightClass.equals("Business")||flightClass.equals("First")||flightClass.equals("Economy")) && (inputValid)) {
+			if ((flightClass.equals("Business")||flightClass.equals("First")||flightClass.equals("Economy")) && (inputValid) && (counter<=((Integer.parseInt(children))+Integer.parseInt(pass)))) {
 				
 				System.out.println("Here");
 				if (flightClass.equals("Business")) {
 				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
+				flightPoints += 200;
 				}
 			if (flightClass.equals("First")) {
 				First plane = new First(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-
+				flightPoints += 200;
 				}
 			if (flightClass.equals("Economy")) {
 				Economy plane = new Economy(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-				System.out.println(plane.getPrice());
-
+				flightPoints += 200;
 				}
 				
 			
@@ -269,11 +272,14 @@ public class BookTickets implements ActionListener{
 			
 
 			else {
-				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!");  
+				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!"); 
+				counter = 0;
+				
 			}
 			}
 			catch(Exception ee) {
-				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!");  
+				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!");
+				counter = 0;
 
 			}
 			
@@ -320,9 +326,6 @@ public class BookTickets implements ActionListener{
 		}
 	
 
-
-
-		
 
 
 		
