@@ -154,7 +154,7 @@ public class Lottery implements ActionListener {
            {  
         	   if(Integer.parseInt(gue)==random) {
         		   JOptionPane.showMessageDialog(confirm, "You've guessed the right number! You've won 1000 points");
-        		   BookTickets.flightClass += 1000;
+        		   LogIn.flightPoints+= 1000;
         		   frame.dispose();
     			   Welcome w = new Welcome();
         	   }
