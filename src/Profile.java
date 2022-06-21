@@ -29,14 +29,28 @@ public class Profile implements ActionListener{
 	public String departure; 
 	public String adultPass; 
 	public String childPass; 
+	JPanel panel = new JPanel(); 
+	public static int i; 
+	public static int j; 
+	JFrame frame =  new JFrame(); 
+	
 	
 	public Profile () throws MalformedURLException{
-
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLayout(null);
+		frame.setVisible(true);
+		frame.setTitle("Airline Reservation System"); 
+		frame.setResizable(false);
+		
+		
+	    frame.getContentPane().setBackground(Color.white);
+	    
 	FileReader file;
 	BufferedReader buffer;
 	String input;
 	String line = LogIn.username+" "+LogIn.pswrd; 
 	try {
+		
 		file = new FileReader("FlightHistory.txt");
 		buffer = new BufferedReader(file);
 		
@@ -53,13 +67,28 @@ public class Profile implements ActionListener{
 				childPass = inputArray [7]; 
 				System.out.println(firstName+lastName+type+classF+travelDestination+departure+adultPass+childPass);
 				
+				// repeating 10 times 
+				 panel.setBounds(50,150,800,800);
+				    panel.setLayout(new GridLayout(10,0));  
+				      JLabel[]username = new JLabel[10];
+				      for(i = 0; i<10; i++) {
+
+				    		  username[i] = new JLabel(type);
+				    		//  System.out.println(username[i]); 
+						   //username.setText(firstName);
+								username[i].setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				    		      panel.add(username[i]);
+				    		      frame.getContentPane().add(panel);    
+				    		   }
+				    		  
+				      }
 	
 				
 			}
 			
 			
 			
-		}
+		
 		buffer.close();
 		
 		
@@ -72,20 +101,12 @@ public class Profile implements ActionListener{
 	}
 		
 	    
-	    panel.setBounds(100,300,800,900);
-	    panel.setLayout(new GridLayout(10,8,3,3));  
-	      JLabel[][] username = new JLabel[10][1];
-	      for(i = 0; i<10; i++) {
-	    	  for(j = 0; j<1; j++) {
-	    		  username[i][j] = new JLabel;
-			   username.setText(firstName);
-		username[i][j].setFont(new Font("Times New Roman", Font.BOLD, 30));
-	    		 
-	    		     
-	    		      panel.add(username[i][j]);
-	    		      frame.getContentPane().add(panel);    
-	    		   }
-	    		  }
+	   
+	      
+	      frame.pack(); 
+	      frame.setSize(900, 800);
+	      frame.add(panel); 
+	      
 	
 	}
 
