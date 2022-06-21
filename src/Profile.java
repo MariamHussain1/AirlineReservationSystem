@@ -70,6 +70,22 @@ public class Profile implements ActionListener{
 	catch(IOException err) {
 		JOptionPane.showInternalMessageDialog(null, JOptionPane.ERROR_MESSAGE);
 	}
+		
+	    
+	    panel.setBounds(100,300,800,900);
+	    panel.setLayout(new GridLayout(10,8,3,3));  
+	      JLabel[][] username = new JLabel[10][1];
+	      for(i = 0; i<10; i++) {
+	    	  for(j = 0; j<1; j++) {
+	    		  username[i][j] = new JLabel;
+			   username.setText(firstName);
+		username[i][j].setFont(new Font("Times New Roman", Font.BOLD, 30));
+	    		 
+	    		     
+	    		      panel.add(username[i][j]);
+	    		      frame.getContentPane().add(panel);    
+	    		   }
+	    		  }
 	
 	}
 
