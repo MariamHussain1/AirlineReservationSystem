@@ -92,11 +92,14 @@ public class Profile implements ActionListener{
 	    				  int result = JOptionPane.showConfirmDialog(frame, "Do you want to cancel the flight?");
 
 	    				  if (result  == JOptionPane.YES_OPTION) {
-	    					 removeRecord("FlightHistory.txt", firstName+lastName+type+classF+travelDestination+departure+adultPass+childPass);
-	    					 frame.remove(flight);
-	    					 frame.getContentPane().remove(panel);
-	    					 System.out.println(flight);
-	    					 System.out.println("here");
+	    					 removeRecord("FlightHistory.txt", firstName+" "+lastName+" "+type+" "+classF+" "+travelDestination+" "+departure+" "+adultPass+" "+childPass);
+	    					 frame.dispose();
+	    					 try {
+								Profile p = new Profile();
+							} catch (MalformedURLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 	    						
 	    						
 	    				  } else if (result  == JOptionPane.NO_OPTION) {
@@ -198,4 +201,3 @@ if(e.getSource() == back) {
 	}
 
 }
-
