@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 public class Lottery implements ActionListener {
 	
 	JFrame frame = new JFrame();
-	JButton next = new JButton("Next");
+	JButton next = new JButton("Back");
 	JLabel title = new JLabel();
 	JLabel light_title = new JLabel();
 	JButton confirm = new JButton("Enter");;
@@ -90,7 +90,7 @@ public class Lottery implements ActionListener {
 		text.setBounds(100,-250,800,800);
 		text.setForeground(darkBlue);
 		
-		text2.setText("GUESS THE NUMBER AND WIN 1000 FLIGHT POINTS TO GET A FREE TRIP!");
+		text2.setText("GUESS THE NUMBER AND WIN A FREE TRIP!");
 		text2.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		text2.setBounds(100,-200,800,800);
 		text2.setForeground(darkBlue);
@@ -153,8 +153,8 @@ public class Lottery implements ActionListener {
            if (checkInt(gue))  
            {  
         	   if(Integer.parseInt(gue)==random) {
-        		   JOptionPane.showMessageDialog(confirm, "You've guessed the right number! You've won 1000 points");
-        		   LogIn.flightPoints+= 1000;
+        		   JOptionPane.showMessageDialog(confirm, "You've guessed the right number! You've won a free flight!");
+        		   BookTickets.flightClass += 1000;
         		   frame.dispose();
     			   Welcome w = new Welcome();
         	   }
