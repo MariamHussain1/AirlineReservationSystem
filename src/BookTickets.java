@@ -3,6 +3,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton; 
@@ -43,7 +47,6 @@ public class BookTickets implements ActionListener{
     JTextField child = new JTextField(30);
     boolean inputValid = false; 
     int counter = 0;
-    public static int flightPoints = 0;
     public static int i;
     public static int j;
 	//JButton confirm2 = new JButton(); 
@@ -259,56 +262,61 @@ public class BookTickets implements ActionListener{
 				System.out.println("Here");
 				if (flightClass.equals("Business")) {
 				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-				flightPoints += 200;
-								
+				LogIn.flightPoints += 200;
 				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
-					    BufferedWriter bw = new BufferedWriter(file);
-					    PrintWriter out = new PrintWriter(bw))
-					{
-					//username password flighType flightClass destination departureTime  #adults #children seat#
+                        BufferedWriter bw = new BufferedWriter(file);
+                        PrintWriter out = new PrintWriter(bw))
+                    {
+                    //username password flighType flightClass destination departureTime  #adults #children seat#
 
-					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
-					    
-					} 
-				catch (IOException e12) {
-					
-				}
+                        out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
+
+                    } 
+                catch (IOException e12) {
+
+                }
+				
 				
 				}
 			    if (flightClass.equals("First")) {
+			    LogIn.addPoints(200);
 				First plane = new First(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-				flightPoints += 200;
-				    				
+				LogIn.flightPoints += 200;
 				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
-					    BufferedWriter bw = new BufferedWriter(file);
-					    PrintWriter out = new PrintWriter(bw))
-					{
-					//username password flighType flightClass destination departureTime  #adults #children seat#
+                        BufferedWriter bw = new BufferedWriter(file);
+                        PrintWriter out = new PrintWriter(bw))
+                    {
+                    //username password flighType flightClass destination departureTime  #adults #children seat#
 
-					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
-					    
-					} 
-				catch (IOException e12) {
-					
-				}
+                        out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
+
+                    } 
+                catch (IOException e12) {
+
+                }
+				
 				}
 			    if (flightClass.equals("Economy")) {
 				Economy plane = new Economy(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-				flightPoints += 200;
-				}
-								
+				LogIn.flightPoints += 200;
 				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
-					    BufferedWriter bw = new BufferedWriter(file);
-					    PrintWriter out = new PrintWriter(bw))
-					{
-					//username password flighType flightClass destination departureTime  #adults #children seat#
+                        BufferedWriter bw = new BufferedWriter(file);
+                        PrintWriter out = new PrintWriter(bw))
+                    {
+                    //username password flighType flightClass destination departureTime  #adults #children seat#
 
-					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
-					    
-					} 
-				catch (IOException e12) {
-					
+                        out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
+
+                    } 
+                catch (IOException e12) {
+
+                }
+				
+						
+						
+				 
 				}
+				
 			
 			} 
 			
