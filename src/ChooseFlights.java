@@ -1,3 +1,10 @@
+/**
+ * @author Shruthi Konduru and Mariam Hussain
+ * 
+ * This class allows the user to choose between international and domestic flights. On either option being clicked they will be presented with 4 flight destination options which when one 
+ * is clicked will lead them to the book tickets class.
+ */
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
