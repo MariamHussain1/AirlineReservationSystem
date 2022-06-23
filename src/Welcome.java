@@ -24,7 +24,7 @@ public class Welcome implements ActionListener{
 	JPanel secondGreyPanel = new JPanel();
 	Icon pfp = new ImageIcon("Images/profile.jpg");
 	JButton profile = new JButton(pfp);
-	Icon flight = new ImageIcon("Images/chooseFlights.png");
+	Icon flight = new ImageIcon("Images/flight.png");
 	JButton bookFlight = new JButton(flight);
 	Icon lottery = new ImageIcon("Images/lottery.png");
 	JButton PlayLottery = new JButton(lottery);
@@ -37,14 +37,13 @@ public class Welcome implements ActionListener{
 	Border border = BorderFactory.createLineBorder(darkBlue, 5);
 	
 	public Welcome () throws MalformedURLException{
+		
+		//setting properties for JFrame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(true);
 		frame.setTitle("Airline Reservation System"); 
 		frame.setResizable(false);
-		
-		
-	    frame.getContentPane().setBackground(Color.white);
 	    
 	    //setting bounds for the profile image
 	    frame.getContentPane().add(profile);
@@ -54,16 +53,14 @@ public class Welcome implements ActionListener{
 		profile.addActionListener(this);
 		profile.setBackground(darkBlue); 
 		profile.setBorder(border);
-
 	    frame.pack();
 	    
-	    frame.getContentPane().add(text1);
-	    frame.pack();
-	    
+	    //adding a caption for the profile image
 	    text1.setText("View Profile");
 		text1.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		text1.setBounds(140,300,200,200);
 		text1.setForeground(darkBlue);
+	    frame.pack();
 	    
 	    //setting bounds for the flight image
 	    frame.getContentPane().add(bookFlight);
@@ -73,30 +70,25 @@ public class Welcome implements ActionListener{
 		bookFlight.addActionListener(this);
 		bookFlight.setBackground(Color.white); 
 		bookFlight.setBorder(border);
-
 	    frame.pack();
 	    
 	    
 	    //adding caption for the book flight image
-	    frame.getContentPane().add(text2);
 	    text2.setText("Book a flight");
 		text2.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		text2.setBounds(365,300,200,200);
 		text2.setForeground(darkBlue);
 	    
 	    //setting bounds for the lottery image
-	    frame.getContentPane().add(PlayLottery);
 	    PlayLottery.setBounds(580, 180, 200, 200);
 	    PlayLottery.setFocusable(false);
 	    PlayLottery.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 	    PlayLottery.addActionListener(this);
 	    PlayLottery.setBackground(grey); 
 	    PlayLottery.setBorder(border);
-
 	    frame.pack();
 	    
 	    //adding caption under the lottery button
-	    frame.getContentPane().add(text3);
 	    text3.setText("Play Lottery");
 		text3.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		text3.setBounds(590,300,200,200);
@@ -110,15 +102,13 @@ public class Welcome implements ActionListener{
 	    back.addActionListener(this);
 	    back.setBackground(white);
 	
-		//add the title
+		//adding the title
 		title.setText("WELCOME");
 		title.setFont(new Font("Times New Roman", Font.BOLD, 80));
 		title.setBounds(230,-230,650,650);
 		title.setForeground(grayBlue);
 		
-		/*
-		 * Add grey panels to the top and bottom of the page
-		 */
+		//adding grey panels to the top and bottom of the page
 		greyPanel.setBackground(grey);
 	    greyPanel.setBounds(0,0,900,100);
 	    secondGreyPanel.setBackground(grey);
@@ -129,6 +119,7 @@ public class Welcome implements ActionListener{
 	    frame.pack();
 	    frame.setSize(900,800);
 	
+	    //adding frame components
 		frame.add(back);
 		frame.add(title);
 		frame.add(greyPanel);
@@ -143,19 +134,25 @@ public class Welcome implements ActionListener{
 		
 			
 	}
-	
-	public void actionPerformed(ActionEvent e) {	
-//		if(e.getSource() == profile) {
-//				frame.dispose();
-//				try {
-//					AboutUs aboutUs = new AboutUs();
-//				} catch (MalformedURLException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				} 
-//			
-//			frame.dispose();
-//			}
+	/**
+	 * This method uses ActionMouseListener to load the different pages once the next button is clicked
+	 */
+	public void actionPerformed(ActionEvent e) {
+		
+		//uses if statement to load profile page
+		if(e.getSource() == profile) {
+				frame.dispose();
+				try {
+					Profile p = new Profile();
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 
+			
+			frame.dispose();
+			}
+		
+		//uses if statement to load book tickets page
 		if(e.getSource() == bookFlight) {
 			frame.dispose();
 			try {
@@ -167,6 +164,21 @@ public class Welcome implements ActionListener{
 		
 		frame.dispose();
 		}
+		
+		//uses if statement to load lottery page
+		if(e.getSource() == PlayLottery) {
+			frame.dispose();
+			try {
+				Lottery lottery = new Lottery();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+		
+		frame.dispose();
+		}
+		
+		//uses if statement to load menu page
 		if(e.getSource() == back) {
 			frame.dispose();
 			try {
@@ -182,5 +194,6 @@ public class Welcome implements ActionListener{
 	}
 
 		
+
 
 
