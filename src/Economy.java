@@ -19,6 +19,7 @@ public class Economy extends Plane {
 						
 			
 		}
+		
 		else if(getFlightType().equals("International")){
 			regPrice = 1500;
 			childPrice = 1000;		
