@@ -226,13 +226,7 @@ public class BookTickets implements ActionListener{
            {  
         	   System.out.println("true");
         	   inputValid = true; 
-        	   //frame.dispose();
-               //try {
-				//Welcome welcome = new Welcome();
-			//} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				//e1.printStackTrace();
-			//} 
+        
            } 
            else {
         	   JOptionPane.showMessageDialog(confirm, "Input is invalid");  
@@ -259,7 +253,7 @@ public class BookTickets implements ActionListener{
 			try {
 			if ((flightClass.equals("Business")||flightClass.equals("First")||flightClass.equals("Economy")) && (inputValid) && (counter==((Integer.parseInt(children))+Integer.parseInt(pass)))) {
 				
-				System.out.println("Here");
+				
 				if (flightClass.equals("Business")) {
 				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
 				LogIn.flightPoints += 200; 
@@ -275,7 +269,48 @@ public class BookTickets implements ActionListener{
 				catch (IOException e12) {
 					
 				}
-				
+				if (LogIn.flightPoints >= 1000) {
+					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
+					Object selectedValue = JOptionPane.showInputDialog(null,"Your flight has been purchased through your lottery points.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
+			        if (selectedValue == possibleValues[0]) {
+			        	frame.dispose(); 
+			        	Profile profile = new Profile(); 
+			        }
+			        if (selectedValue == possibleValues[1]) {
+			        	frame.dispose(); 
+
+			        	ChooseFlights choose = new ChooseFlights(); 
+			        }
+			        if (selectedValue == possibleValues[2]) {
+			        	frame.dispose(); 
+
+			        	Welcome newwel = new Welcome(); 
+			        }
+
+
+
+				}
+				else {
+					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
+					Object selectedValue = JOptionPane.showInputDialog(null,"You have successfully booked your flight, you can choose to be redirected to the page of your choice.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
+			        if (selectedValue == possibleValues[0]) {
+			        	frame.dispose(); 
+
+			        	Profile profile = new Profile(); 
+			        }
+			        if (selectedValue == possibleValues[1]) {
+			        	frame.dispose(); 
+
+			        	ChooseFlights choose = new ChooseFlights(); 
+			        }
+			        if (selectedValue == possibleValues[2]) {
+			        	frame.dispose(); 
+
+			        	Welcome newwel = new Welcome(); 
+			        }
+
+
+				}
 				}
 			if (flightClass.equals("First")) {
 				First plane = new First(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
@@ -298,12 +333,18 @@ public class BookTickets implements ActionListener{
 					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
 					Object selectedValue = JOptionPane.showInputDialog(null,"Your flight has been purchased through your lottery points.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
 			        if (selectedValue == possibleValues[0]) {
+			        	frame.dispose(); 
+
 			        	Profile profile = new Profile(); 
 			        }
 			        if (selectedValue == possibleValues[1]) {
+			        	frame.dispose(); 
+
 			        	ChooseFlights choose = new ChooseFlights(); 
 			        }
 			        if (selectedValue == possibleValues[2]) {
+			        	frame.dispose(); 
+
 			        	Welcome newwel = new Welcome(); 
 			        }
 
@@ -314,12 +355,18 @@ public class BookTickets implements ActionListener{
 					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
 					Object selectedValue = JOptionPane.showInputDialog(null,"You have successfully booked your flight, you can choose to be redirected to the page of your choice.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
 			        if (selectedValue == possibleValues[0]) {
+			        	frame.dispose(); 
+
 			        	Profile profile = new Profile(); 
 			        }
 			        if (selectedValue == possibleValues[1]) {
+			        	frame.dispose(); 
+
 			        	ChooseFlights choose = new ChooseFlights(); 
 			        }
 			        if (selectedValue == possibleValues[2]) {
+			        	frame.dispose(); 
+
 			        	Welcome newwel = new Welcome(); 
 			        }
 
@@ -344,6 +391,49 @@ public class BookTickets implements ActionListener{
 	
 				catch (IOException e12) {
 					
+				}
+				if (LogIn.flightPoints >= 1000) {
+					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
+					Object selectedValue = JOptionPane.showInputDialog(null,"Your flight has been purchased through your lottery points.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
+			        if (selectedValue == possibleValues[0]) {
+			        	frame.dispose(); 
+
+			        	Profile profile = new Profile(); 
+			        }
+			        if (selectedValue == possibleValues[1]) {
+			        	frame.dispose(); 
+
+			        	ChooseFlights choose = new ChooseFlights(); 
+			        }
+			        if (selectedValue == possibleValues[2]) {
+			        	frame.dispose(); 
+
+			        	Welcome newwel = new Welcome(); 
+			        }
+
+
+
+				}
+				else {
+					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
+					Object selectedValue = JOptionPane.showInputDialog(null,"You have successfully booked your flight, you can choose to be redirected to the page of your choice.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
+			        if (selectedValue == possibleValues[0]) {
+			        	frame.dispose(); 
+
+			        	Profile profile = new Profile(); 
+			        }
+			        if (selectedValue == possibleValues[1]) {
+			        	frame.dispose(); 
+
+			        	ChooseFlights choose = new ChooseFlights(); 
+			        }
+			        if (selectedValue == possibleValues[2]) {
+			        	frame.dispose(); 
+
+			        	Welcome newwel = new Welcome(); 
+			        }
+
+
 				}
 				}
 				
