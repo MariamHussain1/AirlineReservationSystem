@@ -1,39 +1,28 @@
 public class First extends Plane {
 	
 	public double price;
-	public double childPrice;
-	private int seats;
+	private double regPrice; 
+	private double childPrice; 
+	private int adultSeats;
 	private int childSeats;
 	public First(String time, String from, String destination, String flightType, String flightClass, int seats, int childSeats) {
 		super(time, from, destination, flightType, flightClass);
-		setPrice1(seats, childSeats); 	
 		}
 	
 	
-	public void setPrice1(int seats, int childSeats) {
+	
+	public double getPrice(int adultSeats, int childSeats){	
 		if(getFlightType().equals("Domestic")) {
-			price = 2000*seats;
-			System.out.println(price);
-			
-			System.out.println("here");
+			regPrice = 4200;
+			childPrice = 3600;
+
 		}
 		else if(getFlightType().equals("International")){
-			price = 3000*seats;
+			regPrice = 5800;
+			childPrice = 5000;
+
 		}
-			
-			
-		}
-	public void setPrice(double childPrice){
-		if(getFlightType().equals("Domestic")) {
-			childPrice = 1400;
-		}
-		else if(getFlightType().equals("International")){
-			price = 2400;
-		}
-		
-	}
-	public double getPrice(){	
-		return childSeats*childPrice + (seats-childSeats)*price;
+		return childSeats*childPrice + adultSeats*regPrice;
 	}
 	
 	
