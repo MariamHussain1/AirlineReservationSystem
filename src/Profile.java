@@ -11,6 +11,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton; 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,11 +33,13 @@ public class Profile implements ActionListener{
 	public static int i; 
 	public static int j;
 	JButton flight = new JButton();
-	JButton back = new JButton("Back");
+	JButton back = new JButton("Main Menu");
 	JButton confirm = new JButton("Confirm Cancellation");
 	JLabel profile = new JLabel();
 	JLabel title = new JLabel();
 	JFrame frame =  new JFrame(); 
+	Icon plane = new ImageIcon("Images/flighthistory.png");
+	JLabel planee = new JLabel(plane); 
 	
 	
 	public Profile () throws MalformedURLException{
@@ -44,9 +49,11 @@ public class Profile implements ActionListener{
 		frame.setTitle("Airline Reservation System"); 
 		frame.setResizable(false);
 		
-		
+		 
 	    frame.getContentPane().setBackground(Color.cyan);
-	    back.setBounds(700, 100, 75, 50);
+	    
+	    planee.setBounds(0, 0, 900, 100); 
+	    back.setBounds(760, 10, 90, 50);
 		back.setFocusable(false);
 		back.setFont(new Font("Times New Roman", Font.BOLD, 10));
 		back.addActionListener(this);
@@ -59,13 +66,15 @@ public class Profile implements ActionListener{
 		 panel.add(info);
 		 frame.getContentPane().add(panel);
 		 
-		 profile.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		 profile.setText("Usesrname:    "+LogIn.username+"        Password:    "+LogIn.pswrd );
-		 profile.setBounds(50,80,900,100);
+		// profile.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		// profile.setText("Username:    "+LogIn.username+"        Password:    "+LogIn.pswrd );
+		// profile.setBounds(50,80,900,100);
 		 
-		 title.setFont(new Font("Times New Roman", Font.BOLD, 30));
-		 title.setText("USER ACCOUNT - Click on a flight entry to cancel a flight");
-		 title.setBounds(50,0,900,100);
+		 title.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		 title.setText("Welcome to your profile. Click on a flight entry to cancel a flight: ");
+		 title.setBounds(50,85,900,100);
+		// title.setForeground(Color.lightGray);
+		 
 		
 
 		
@@ -135,6 +144,7 @@ public class Profile implements ActionListener{
 	    frame.pack();
 	    frame.setSize(900,800);
 	    frame.add(back);
+	    frame.add(planee);
 	    frame.add(title);
 	    frame.add(profile);
 		
