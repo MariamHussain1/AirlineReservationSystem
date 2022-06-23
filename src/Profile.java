@@ -32,6 +32,8 @@ public class Profile implements ActionListener{
 	JButton flight = new JButton();
 	JButton back = new JButton("Back");
 	JButton confirm = new JButton("Confirm Cancellation");
+	JLabel profile = new JLabel();
+	JLabel title = new JLabel();
 	JFrame frame =  new JFrame(); 
 	
 	
@@ -43,18 +45,29 @@ public class Profile implements ActionListener{
 		frame.setResizable(false);
 		
 		
-	    frame.getContentPane().setBackground(Color.white);
-	    back.setBounds(200, 500, 200, 75);
+	    frame.getContentPane().setBackground(Color.cyan);
+	    back.setBounds(700, 100, 75, 50);
 		back.setFocusable(false);
-		back.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+		back.setFont(new Font("Times New Roman", Font.BOLD, 10));
 		back.addActionListener(this);
-		back.setBackground(Color.white);
+		back.setBackground(Color.lightGray);
 	    panel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		panel.setBounds(50,150,800,800);
-		JLabel info = new JLabel("Username     Password              Type                                Class               Destination            Departure                   Adult Pass.              Child Pass.");
+		panel.setBackground(Color.white);
+		JLabel info = new JLabel("Username     Password              Type                                Class                          Destination            Departure                   Adult Pass.     Child Pass.");
 		 info.setFont(new Font("Times New Roman", Font.BOLD, 10));
 		 panel.add(info);
 		 frame.getContentPane().add(panel);
+		 
+		 profile.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		 profile.setText("Usesrname:    "+LogIn.username+"        Password:    "+LogIn.pswrd );
+		 profile.setBounds(50,80,900,100);
+		 
+		 title.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		 title.setText("USER ACCOUNT - Click on a flight entry to cancel a flight");
+		 title.setBounds(50,0,900,100);
+		
+
 		
 	    
 	FileReader file;
@@ -121,6 +134,9 @@ public class Profile implements ActionListener{
 		frame.getContentPane().setBackground(Color.white);
 	    frame.pack();
 	    frame.setSize(900,800);
+	    frame.add(back);
+	    frame.add(title);
+	    frame.add(profile);
 		
 		
 	}
