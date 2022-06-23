@@ -10,35 +10,45 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * This class shows a page with our names and class and the title of our program
+ * @author Mariam Hussain & Shruthi Konduru 
+ *
+ */
 public class TitlePage implements ActionListener {
 	
+	//adding JFrame
 	JFrame frame = new JFrame();
+	
+	//creating an image
+	ImageIcon logo = new ImageIcon("Images/logo.jpg");
+	Icon plane = new ImageIcon("Images/plane.png");
+	
+	//creating buttons
 	JButton next = new JButton("Next");
+
+	//creating JLabels
 	JLabel title = new JLabel();
 	JLabel light_title = new JLabel();
 	JLabel text = new JLabel();
-	JPanel bluePanel = new JPanel();
-	ImageIcon logo = new ImageIcon("Images/logo.jpg");
-	Icon plane = new ImageIcon("Images/plane.png");
 	JLabel planeLabel = new JLabel(plane);
+
+	//creating a JPanel
+	JPanel bluePanel = new JPanel();
+
+	//creating colors
 	Color grayBlue = new Color(102, 153, 204);
 	Color darkBlue = new Color(20, 64, 109);
 	Color white = new Color(255, 255, 255);
 	
 	public TitlePage () throws MalformedURLException{
+		
+		//adding frame properties
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(true);
 		frame.setTitle("Airline Reservation System"); 
 		frame.setResizable(false);
-		
-		//ImageIcon image = new ImageIcon("Images/logo.jpg");
-		frame.setIconImage(logo.getImage());
-		
-	    frame.getContentPane().setBackground(Color.white);
-	  
-	    frame.getContentPane().add(planeLabel);
-
 	    frame.pack();
 	    
 	    //setting bounds for the plane image
@@ -51,32 +61,28 @@ public class TitlePage implements ActionListener {
 		next.addActionListener(this);
 		next.setBackground(white);
 	
-		//add the title
+		//adding the title
 		title.setText("CS AIR");
 		title.setFont(new Font("Times New Roman", Font.BOLD, 100));
 		title.setBounds(200,-200,650,650);
 		title.setForeground(darkBlue);
 		
-		//Add a blue panel to the left
+		//Adding a blue panel to the left
 		bluePanel.setBackground(grayBlue);
 		bluePanel.setBounds(0,0,100,800);
-		
-	  
 	    
 		//adding our names
-		frame.getContentPane().add(text);
-	    frame.pack();
-	    
 	    text.setText("ICS3U7 Shruthi Konduru and Mariam Hussain");
 		text.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		text.setBounds(150,-300,650,650);
 		text.setForeground(darkBlue);
 			
-	    
+	    //set frame properties
 		frame.getContentPane().setBackground(Color.white);
 	    frame.pack();
 	    frame.setSize(900,800);
 	
+	    //add components to frame
 		frame.add(next);
 		frame.add(title);
 		frame.add(light_title);
@@ -87,10 +93,13 @@ public class TitlePage implements ActionListener {
 		
 			
 	}
-	
+	/**
+	 * This method uses ActionMouseListener to perform actions if a button is clicked
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		if(e.getSource() == next) {
+			//if next is clicked the menu screen is loaded
 			try {
 				Menu menuPage = new Menu();
 			} catch (MalformedURLException e1) {
