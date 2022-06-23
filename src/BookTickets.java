@@ -46,9 +46,10 @@ public class BookTickets implements ActionListener{
     JTextField passengers = new JTextField(30);
     JTextField child = new JTextField(30);
     boolean inputValid = false; 
-    int counter = 0;
-    public static int i;
-    public static int j;
+    
+    boolean selected = false; 
+    int counter; 
+
 	//JButton confirm2 = new JButton(); 
     
 	Border border = BorderFactory.createLineBorder(darkBlue, 5);
@@ -150,16 +151,15 @@ public class BookTickets implements ActionListener{
 	    panel.setBounds(550,200,300,300);
 	    panel.setLayout(new GridLayout(4,5,3,3));  
 	      JToggleButton[][] seats = new JToggleButton[4][5];
-	      for(i = 0; i<4; i++) {
-	    	  for(j = 0; j<5; j++) {
+	      for(int i = 0; i<4; i++) {
+	    	  for(int j = 0; j<5; j++) {
 	    		  k++;
 	    		  seats[i][j] = new JToggleButton(l+""+k);
 	    		  seats[i][j].addActionListener(new ActionListener() {
 	    			  @Override
 	    		      public void actionPerformed(ActionEvent e) {
-	    				  counter++;
-	    				  seats[i][j].setSelected(false);
-	    		            //JOptionPane.showMessageDialog(frame, ((JToggleButton)e.getSource()).isSelected());
+		    				 counter++;
+	    				  //JOptionPane.showMessageDialog(frame, ((JToggleButton)e.getSource()).isSelected());
 	    		         }
 	    		      });
 	    		      panel.add(seats[i][j]);
@@ -258,63 +258,93 @@ public class BookTickets implements ActionListener{
 		if(e.getSource() == finalConfirm) {
 			try {
 			if ((flightClass.equals("Business")||flightClass.equals("First")||flightClass.equals("Economy")) && (inputValid) && (counter==((Integer.parseInt(children))+Integer.parseInt(pass)))) {
-				counter = 0;
+				
 				System.out.println("Here");
 				if (flightClass.equals("Business")) {
 				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-				LogIn.flightPoints += 200;
+				LogIn.flightPoints += 200; 
 				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
-                        BufferedWriter bw = new BufferedWriter(file);
-                        PrintWriter out = new PrintWriter(bw))
-                    {
-                    //username password flighType flightClass destination departureTime  #adults #children seat#
+					    BufferedWriter bw = new BufferedWriter(file);
+					    PrintWriter out = new PrintWriter(bw))
+					{
+					//username password flighType flightClass destination departureTime  #adults #children seat#
 
-                        out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
-
-                    } 
-                catch (IOException e12) {
-
-                }
-				
+					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
+					    
+					} 
+				catch (IOException e12) {
+					
+				}
 				
 				}
-			    if (flightClass.equals("First")) {
-			    LogIn.addPoints(200);
+			if (flightClass.equals("First")) {
 				First plane = new First(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-				LogIn.flightPoints += 200;
-				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
-                        BufferedWriter bw = new BufferedWriter(file);
-                        PrintWriter out = new PrintWriter(bw))
-                    {
-                    //username password flighType flightClass destination departureTime  #adults #children seat#
-
-                        out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
-
-                    } 
-                catch (IOException e12) {
-
-                }
+				//LogIn.flightPoints += 200; 
 				
+				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
+					    BufferedWriter bw = new BufferedWriter(file);
+					    PrintWriter out = new PrintWriter(bw))
+					{
+					//username password flighType flightClass destination departureTime  #adults #children seat#
+
+					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
+					    
+					} 
+				catch (IOException e12) {
+					
 				}
-			    if (flightClass.equals("Economy")) {
-				Economy plane = new Economy(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-				LogIn.flightPoints += 200;
-				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
-                        BufferedWriter bw = new BufferedWriter(file);
-                        PrintWriter out = new PrintWriter(bw))
-                    {
-                    //username password flighType flightClass destination departureTime  #adults #children seat#
-
-                        out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
-
-                    } 
-                catch (IOException e12) {
-
-                }
 				
-						
-						
-				 
+				if (LogIn.flightPoints >= 1000) {
+					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
+					Object selectedValue = JOptionPane.showInputDialog(null,"Your flight has been purchased through your lottery points.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
+			        if (selectedValue == possibleValues[0]) {
+			        	Profile profile = new Profile(); 
+			        }
+			        if (selectedValue == possibleValues[1]) {
+			        	ChooseFlights choose = new ChooseFlights(); 
+			        }
+			        if (selectedValue == possibleValues[2]) {
+			        	Welcome newwel = new Welcome(); 
+			        }
+
+
+
+				}
+				else {
+					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
+					Object selectedValue = JOptionPane.showInputDialog(null,"You have successfully booked your flight, you can choose to be redirected to the page of your choice.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
+			        if (selectedValue == possibleValues[0]) {
+			        	Profile profile = new Profile(); 
+			        }
+			        if (selectedValue == possibleValues[1]) {
+			        	ChooseFlights choose = new ChooseFlights(); 
+			        }
+			        if (selectedValue == possibleValues[2]) {
+			        	Welcome newwel = new Welcome(); 
+			        }
+
+
+				}
+				}
+			if (flightClass.equals("Economy")) {
+				Economy plane = new Economy(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
+				LogIn.flightPoints += 200; 
+				double price = plane.getPrice(Integer.parseInt(pass), Integer.parseInt(children));
+				System.out.println(price);
+				//LogIn.addPoints(200); 
+				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
+					    BufferedWriter bw = new BufferedWriter(file);
+					    PrintWriter out = new PrintWriter(bw))
+					{
+					//username password flighType flightClass destination departureTime  #adults #children seat#
+
+					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
+					    
+					} 
+	
+				catch (IOException e12) {
+					
+				}
 				}
 				
 			
@@ -322,23 +352,12 @@ public class BookTickets implements ActionListener{
 			
 
 			else {
-				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!"); 
-				counter = 0;
-				frame.dispose();
-				BookTickets t = new BookTickets(ChooseFlights.destination, ChooseFlights.time);
-				
+				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!");  
+				counter = 0; 
 			}
 			}
 			catch(Exception ee) {
-				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!");
-				counter = 0;
-				try {
-					frame.dispose();
-					BookTickets t = new BookTickets(ChooseFlights.destination, ChooseFlights.time);
-				} catch (MalformedURLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!");  
 
 			}
 			
@@ -387,4 +406,11 @@ public class BookTickets implements ActionListener{
 
 
 
+		
+
+
+		
+
+
+		
 		
