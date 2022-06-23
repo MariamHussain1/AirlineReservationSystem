@@ -12,44 +12,64 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * @author Mariam Hussain
+ *
+ */
+
 public class Lottery implements ActionListener {
 	
+	//made JFrame
 	JFrame frame = new JFrame();
+	
+	//added images
+	Icon plane = new ImageIcon("Images/plane.png");
+	
+	//made buttons
 	JButton next = new JButton("Back");
+	JButton confirm = new JButton("Enter");
+	
+	//made JLabels
 	JLabel title = new JLabel();
 	JLabel light_title = new JLabel();
-	JButton confirm = new JButton("Enter");;
 	JLabel text = new JLabel();
 	JLabel text2 = new JLabel();
-	JPanel bluePanel = new JPanel();
-	ImageIcon logo = new ImageIcon("Images/logo.jpg");
-	Icon plane = new ImageIcon("Images/plane.png");
-	JTextField guess = new JTextField(60);
 	JLabel g = new JLabel("ENTER GUESS!");
 	JLabel planeLabel = new JLabel(plane);
+	
+	//made JPanel
+	JPanel bluePanel = new JPanel();
+	
+	//added text field
+	JTextField guess = new JTextField(60);
+	
+	//added colors
 	Color grayBlue = new Color(102, 153, 204);
 	Color darkBlue = new Color(20, 64, 109);
 	Color white = new Color(255, 255, 255);
+	
+	//variables
 	int min = 1;
 	int max = 100;
 	int tries = 3;
 	int random = (int)(Math.random()*(max-min+1)+min);
 	String gue;
 	
+	/**
+	 * This class shows a lottery class where the user has 3 tries to guess a random number from 1-100 and they guess right they win a free flight
+	 * @throws MalformedURLException
+	 */
 	public Lottery () throws MalformedURLException{
+		//prints number to console
 		System.out.println(random);
+		
+		//frame properties
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(true);
 		frame.setTitle("Airline Reservation System"); 
 		frame.setResizable(false);
-		
-		//ImageIcon image = new ImageIcon("Images/logo.jpg");
-		frame.setIconImage(logo.getImage());
-		
-	    frame.getContentPane().setBackground(Color.white);
-	  
-
 	    frame.pack();
 	    
 	    //setting bounds for the plane image
@@ -72,34 +92,34 @@ public class Lottery implements ActionListener {
 		bluePanel.setBackground(grayBlue);
 		bluePanel.setBounds(0,0,100,800);
 		
+		//Adding the text labels on to page
 		g.setBounds(150, 250, 150, 20);
 		guess.setBounds(150, 280, 200, 100);
 		
+		//adding confirm button for the guess
 		confirm.setBounds(150, 400, 100, 50);
 		confirm.setFocusable(false);
 		confirm.addActionListener(this);
 		confirm.setBackground(grayBlue);
 	  
-	    
-		//adding our names
-		frame.getContentPane().add(text);
-	    frame.pack();
-	    
+	    //setting the instructins
 	    text.setText("Welcome to CS Air's Guessing Game. Our generator has thought of a random number from 1 - 100.");
 		text.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		text.setBounds(100,-250,800,800);
 		text.setForeground(darkBlue);
 		
+		//setting the instructions
 		text2.setText("GUESS THE NUMBER AND WIN A FREE TRIP!");
 		text2.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		text2.setBounds(100,-200,800,800);
 		text2.setForeground(darkBlue);
 			
-	    
+	    //set properties for the frame
 		frame.getContentPane().setBackground(Color.white);
 	    frame.pack();
 	    frame.setSize(900,800);
 	
+	    //add components to frame
 		frame.add(next);
 		frame.add(title);
 		frame.add(light_title);
@@ -115,11 +135,16 @@ public class Lottery implements ActionListener {
 		
 			
 	}
-	
+	/**
+	 * This method checks the input into the text field and makes sure that it is a number
+	 * @param str: string
+	 * @return true if the string is a proper number or false
+	 */
 	private boolean checkInt(String str) {
 		boolean flag = true; 
-		
+		//parses string to int
 		int strInt = Integer.parseInt(str); 
+		//uses for loop to traverse string and make sure every char is a digit
 		for(int i = 0; i < str.length(); i++) {
 			char cur = str.charAt(i);
 			if(!(Character.isDigit(cur))) {
@@ -135,9 +160,12 @@ public class Lottery implements ActionListener {
 			
 		}
 	
-	
+	/**
+	 * This method uses ActionMouseListener to perform actions based on buttons clicked
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {	
+		//if next is pressed welcome page is loaded
 		if(e.getSource() == next) {
 			try {
 				Welcome welcom = new Welcome();
@@ -147,19 +175,29 @@ public class Lottery implements ActionListener {
 			}
 			frame.dispose();
 		}
+		
+		//if confirmed is pressed:
 		if (e.getSource() == confirm)  {  
+			
+			//stores input from text field in variable 
            gue = guess.getText();    
            try {
+        	   
+        	   //checks if gue equals the random number
            if (checkInt(gue))  
            {  
         	   if(Integer.parseInt(gue)==random) {
+        		   
+        		   //display congratualtions message and increment flight points by 1000
         		   JOptionPane.showMessageDialog(confirm, "You've guessed the right number! You've won a free flight!");
-        		   BookTickets.flightClass += 1000;
+        		   LogIn.flightPoints += 1000;
         		   frame.dispose();
     			   Welcome w = new Welcome();
         	   }
         	   else {
+        		   //show message and display number of tries left
         		   JOptionPane.showMessageDialog(confirm, "WRONG GUESS, YOU HAVE "+(tries-1)+" TRIES LEFT");
+        		   //deduct a try (3 to start)
         		   if(tries==1) {
         			   JOptionPane.showMessageDialog(confirm, "OUT OF LUCK, YOU'VE USED UP YOUR TRIES");
         			   frame.dispose();
@@ -170,11 +208,13 @@ public class Lottery implements ActionListener {
         	   }
            } 
            else {
+        	   //for errors force user to re-enter info
         	   JOptionPane.showMessageDialog(confirm, "Input is invalid");  
             	guess.setText("");  
               	
                }   
            }
+           //for errors: force user to re-enter info
            catch(Exception ee) {
         	   JOptionPane.showMessageDialog(confirm, "Input is invalid"); 
         	   guess.setText(""); 
