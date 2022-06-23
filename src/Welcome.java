@@ -12,38 +12,56 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+/**
+ * 
+ * @author Mariam Hussain and Shruthi Konduru
+ * This class acts as the main menu for the program where the user can redirect themselves to where they'd like to go 
+ */
 public class Welcome implements ActionListener{
 	
-	JFrame frame = new JFrame();  //adding the frame
+	
+	//adding the frame
+	JFrame frame = new JFrame();  
+	//adding the back button 
 	JButton back = new JButton("BACK");  
+	//adding all of the JLabels to be displayed as text 
 	JLabel title = new JLabel();
 	JLabel text1 = new JLabel();
 	JLabel text2 = new JLabel();
 	JLabel text3 = new JLabel();
 	JPanel greyPanel = new JPanel();
 	JPanel secondGreyPanel = new JPanel();
+	
+	//defining the buttons and images associated with each respective button 
 	Icon pfp = new ImageIcon("Images/profile.jpg");
 	JButton profile = new JButton(pfp);
-	Icon flight = new ImageIcon("Images/flight.png");
+	Icon flight = new ImageIcon("Images/chooseFlights.png");
 	JButton bookFlight = new JButton(flight);
 	Icon lottery = new ImageIcon("Images/lottery.png");
 	JButton PlayLottery = new JButton(lottery);
 	
+	//creating colors
 	Color grey = new Color(211, 211, 211);
 	Color grayBlue = new Color(102, 153, 204);
 	Color darkBlue = new Color(20, 64, 109);
 	Color white = new Color(255, 255, 255);
 	
+	// creating a border for the buttons 
 	Border border = BorderFactory.createLineBorder(darkBlue, 5);
 	
+	/**
+	 * This method defines and adds all the components to the frame 
+	 * @throws MalformedURLException
+	 */
 	public Welcome () throws MalformedURLException{
-		
-		//setting properties for JFrame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(true);
 		frame.setTitle("Airline Reservation System"); 
 		frame.setResizable(false);
+		
+		
+	    frame.getContentPane().setBackground(Color.white);
 	    
 	    //setting bounds for the profile image
 	    frame.getContentPane().add(profile);
@@ -53,14 +71,17 @@ public class Welcome implements ActionListener{
 		profile.addActionListener(this);
 		profile.setBackground(darkBlue); 
 		profile.setBorder(border);
+
 	    frame.pack();
 	    
-	    //adding a caption for the profile image
+	    frame.getContentPane().add(text1);
+	    frame.pack();
+	    
+	    //adding the description for profile button 
 	    text1.setText("View Profile");
 		text1.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		text1.setBounds(140,300,200,200);
 		text1.setForeground(darkBlue);
-	    frame.pack();
 	    
 	    //setting bounds for the flight image
 	    frame.getContentPane().add(bookFlight);
@@ -70,25 +91,30 @@ public class Welcome implements ActionListener{
 		bookFlight.addActionListener(this);
 		bookFlight.setBackground(Color.white); 
 		bookFlight.setBorder(border);
+
 	    frame.pack();
 	    
 	    
 	    //adding caption for the book flight image
+	    frame.getContentPane().add(text2);
 	    text2.setText("Book a flight");
 		text2.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		text2.setBounds(365,300,200,200);
 		text2.setForeground(darkBlue);
 	    
 	    //setting bounds for the lottery image
+	    frame.getContentPane().add(PlayLottery);
 	    PlayLottery.setBounds(580, 180, 200, 200);
 	    PlayLottery.setFocusable(false);
 	    PlayLottery.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 	    PlayLottery.addActionListener(this);
 	    PlayLottery.setBackground(grey); 
 	    PlayLottery.setBorder(border);
+
 	    frame.pack();
 	    
 	    //adding caption under the lottery button
+	    frame.getContentPane().add(text3);
 	    text3.setText("Play Lottery");
 		text3.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		text3.setBounds(590,300,200,200);
@@ -102,13 +128,15 @@ public class Welcome implements ActionListener{
 	    back.addActionListener(this);
 	    back.setBackground(white);
 	
-		//adding the title
+		//add the title
 		title.setText("WELCOME");
 		title.setFont(new Font("Times New Roman", Font.BOLD, 80));
 		title.setBounds(230,-230,650,650);
 		title.setForeground(grayBlue);
 		
-		//adding grey panels to the top and bottom of the page
+		
+		 // Add grey panels to the top and bottom of the page
+		 
 		greyPanel.setBackground(grey);
 	    greyPanel.setBounds(0,0,900,100);
 	    secondGreyPanel.setBackground(grey);
@@ -119,7 +147,7 @@ public class Welcome implements ActionListener{
 	    frame.pack();
 	    frame.setSize(900,800);
 	
-	    //adding frame components
+	    // adding all components to frame 
 		frame.add(back);
 		frame.add(title);
 		frame.add(greyPanel);
@@ -135,56 +163,46 @@ public class Welcome implements ActionListener{
 			
 	}
 	/**
-	 * This method uses ActionMouseListener to load the different pages once the next button is clicked
+	 * Thsi method uses ActionMouseListener to perform actions based on what button gets clicked 
 	 */
-	public void actionPerformed(ActionEvent e) {
-		
-		//uses if statement to load profile page
+	public void actionPerformed(ActionEvent e) {	
 		if(e.getSource() == profile) {
 				frame.dispose();
 				try {
-					Profile p = new Profile();
-				} catch (MalformedURLException e1) {
-					// TODO Auto-generated catch block
+					// if profile is clicked, the profile class is called 
+					Profile profil = new Profile();
+				} catch (MalformedURLException e1) {					
 					e1.printStackTrace();
 				} 
 			
 			frame.dispose();
 			}
-		
-		//uses if statement to load book tickets page
 		if(e.getSource() == bookFlight) {
 			frame.dispose();
 			try {
+				// if chooseflights is clicked, the chooseflights class is called 
 				ChooseFlights choose = new ChooseFlights();
 			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} 
 		
 		frame.dispose();
 		}
 		
-		//uses if statement to load lottery page
-		if(e.getSource() == PlayLottery) {
-			frame.dispose();
+		if (e.getSource()==PlayLottery) {
 			try {
-				Lottery lottery = new Lottery();
+				//if lottery is clicked, the lottery class is called 
+				Lottery lotto = new Lottery ();
 			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} 
-		
-		frame.dispose();
 		}
-		
-		//uses if statement to load menu page
 		if(e.getSource() == back) {
 			frame.dispose();
 			try {
+				// if back is clicked, the user is logged out and menu class is called 
 				Menu menu = new Menu();
 			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} 
 		
@@ -194,6 +212,4 @@ public class Welcome implements ActionListener{
 	}
 
 		
-
-
 
