@@ -22,7 +22,7 @@ public class LogIn implements ActionListener {
 	JFrame frame = new JFrame();
 	
 	//creating buttons
-	JButton next = new JButton("Sign Up");
+	JButton next = new JButton("Sign In");
 	
 	//creating colors
 	Color darkBlue = new Color(20, 64, 109);
