@@ -11,19 +11,18 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 
 
 public class ChooseFlights implements ActionListener{
 	public String [][] internationalInventory = { {"Paris", "Berlin", "Turkey", "Venice"} ,{"2:00AM", "7:00PM", "6:30AM", "4:00PM"}}; 
-	public String[][] domesticInv = {{"QC, Montreal", "BC, Victoria", "NVT, Iqaluit", "NS, Halifax"},{"9:00AM", "5:45PM", "8:30PM", "11:50AM"}};
+	public String[][] domesticInv = {{"Montreal", "Victoria", "Iqaluit", "Halifax"},{"9:00AM", "5:45PM", "8:30PM", "11:50AM"}};
 	JFrame frame = new JFrame();  //adding the frame
 	JButton back = new JButton("BACK");  	
 	JButton domestic = new JButton("Domestic");
 	JButton international = new JButton("International");
-	Icon pic = new ImageIcon("Images/chooseFlights.png");
+	Icon pic = new ImageIcon("Images/chooseFlights.jpg");
 	JLabel background = new JLabel(pic);
 	
 	Color grey = new Color(211, 211, 211);
