@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class AboutUs implements ActionListener{
+	//declaration of components
 	Color darkBlue = new Color(20, 64, 109);
 	JFrame aboutUs = new JFrame();
 	JButton back = new JButton("Go Back To Menu");
