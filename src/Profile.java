@@ -192,13 +192,13 @@ public class Profile implements ActionListener{
 
 	}
 	/**
-	 * This method 
+	 * This method finds the string to remove in the given txt file and deletes it
 	 * @param filepath
 	 * @param removeLine
 	 */
 	public static void removeRecord(String filepath, String removeLine)
 	{
-		System.out.println("here");
+		//creates a new temporary file to copy info from old file
 		String tempFile = "temp.txt";
 		File oldFile = new File(filepath);
 		File newFile = new File(tempFile);
@@ -212,14 +212,18 @@ public class Profile implements ActionListener{
 
 			FileReader fr = new FileReader(filepath);
 			BufferedReader br = new BufferedReader(fr);
+			
+			//reads from file path in parameter
 
 			while((currentLine = br.readLine())!= null) {
+				//copies lines from old file to new file EXCEPT the line you wish to remove
 				if(!(currentLine.equals(removeLine))) {
 					pw.println(currentLine);
 				}
 
 			}
 
+			//close all the buffer readers and writers
 			pw.flush();
 			pw.close();
 			fr.close();
@@ -227,13 +231,15 @@ public class Profile implements ActionListener{
 			bw.close();
 			fw.close();
 
+			//delete the old file and rename the new file as the old file
 			oldFile.delete();
 			File dump = new File(filepath);
 			newFile.renameTo(dump);
-			System.out.println("here");
+			
 		}
 
 		catch(Exception e) {
+			//show error message
 			JOptionPane.showInternalMessageDialog(null, JOptionPane.ERROR_MESSAGE);
 		}
 
