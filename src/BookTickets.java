@@ -32,7 +32,7 @@ public class BookTickets implements ActionListener{
 	JLabel seatLabel = new JLabel();
 	JButton eco = new JButton("Economy");
 	JButton bus = new JButton("Business");
-	JButton fir = new JButton("First Class");
+	JButton fir = new JButton("First");
 	
 	Color grey = new Color(211, 211, 211);
 	Color grayBlue = new Color(102, 153, 204);
@@ -256,7 +256,7 @@ public class BookTickets implements ActionListener{
 				
 				if (flightClass.equals("Business")) {
 				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-				LogIn.flightPoints += 200; 
+				//LogIn.flightPoints += 200; 
 				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
 					    BufferedWriter bw = new BufferedWriter(file);
 					    PrintWriter out = new PrintWriter(bw))
@@ -272,7 +272,8 @@ public class BookTickets implements ActionListener{
 				if (LogIn.flightPoints >= 1000) {
 					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
 					Object selectedValue = JOptionPane.showInputDialog(null,"Your flight has been purchased through your lottery points.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
-			        if (selectedValue == possibleValues[0]) {
+					LogIn.flightPoints = 0; 
+					if (selectedValue == possibleValues[0]) {
 			        	frame.dispose(); 
 			        	Profile profile = new Profile(); 
 			        }
@@ -291,8 +292,9 @@ public class BookTickets implements ActionListener{
 
 				}
 				else {
-					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
-					Object selectedValue = JOptionPane.showInputDialog(null,"You have successfully booked your flight, you can choose to be redirected to the page of your choice.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
+					Object[]possibleValues = {"Check Profile", "Book Another Flight", "Go Back to Main Menu"}; 
+					double price = plane.getPrice(Integer.parseInt(pass), Integer.parseInt(children)); 
+					Object selectedValue = JOptionPane.showInputDialog(null,"$"+price+"0 has been paid. You have successfully booked your flight, you can cancel your purchase by following the intructions in the profile page", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
 			        if (selectedValue == possibleValues[0]) {
 			        	frame.dispose(); 
 
@@ -332,7 +334,8 @@ public class BookTickets implements ActionListener{
 				if (LogIn.flightPoints >= 1000) {
 					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
 					Object selectedValue = JOptionPane.showInputDialog(null,"Your flight has been purchased through your lottery points.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
-			        if (selectedValue == possibleValues[0]) {
+					LogIn.flightPoints = 0; 
+					if (selectedValue == possibleValues[0]) {
 			        	frame.dispose(); 
 
 			        	Profile profile = new Profile(); 
@@ -352,8 +355,9 @@ public class BookTickets implements ActionListener{
 
 				}
 				else {
-					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
-					Object selectedValue = JOptionPane.showInputDialog(null,"You have successfully booked your flight, you can choose to be redirected to the page of your choice.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
+					Object[]possibleValues = {"Check Profile", "Book Another Flight", "Go Back to Main Menu"}; 
+					double price = plane.getPrice(Integer.parseInt(pass), Integer.parseInt(children)); 
+					Object selectedValue = JOptionPane.showInputDialog(null,"$"+price+"0 has been paid. You have successfully booked your flight, you can cancel your purchase by following the intructions in the profile page", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
 			        if (selectedValue == possibleValues[0]) {
 			        	frame.dispose(); 
 
@@ -375,10 +379,6 @@ public class BookTickets implements ActionListener{
 				}
 			if (flightClass.equals("Economy")) {
 				Economy plane = new Economy(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-				LogIn.flightPoints += 200; 
-				double price = plane.getPrice(Integer.parseInt(pass), Integer.parseInt(children));
-				System.out.println(price);
-				//LogIn.addPoints(200); 
 				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
 					    BufferedWriter bw = new BufferedWriter(file);
 					    PrintWriter out = new PrintWriter(bw))
@@ -395,7 +395,8 @@ public class BookTickets implements ActionListener{
 				if (LogIn.flightPoints >= 1000) {
 					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
 					Object selectedValue = JOptionPane.showInputDialog(null,"Your flight has been purchased through your lottery points.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
-			        if (selectedValue == possibleValues[0]) {
+					LogIn.flightPoints = 0; 
+					if (selectedValue == possibleValues[0]) {
 			        	frame.dispose(); 
 
 			        	Profile profile = new Profile(); 
@@ -415,8 +416,9 @@ public class BookTickets implements ActionListener{
 
 				}
 				else {
-					Object[]possibleValues = {"Check Flight History", "Book Another Flight", "Go Back to Main Menu"}; 
-					Object selectedValue = JOptionPane.showInputDialog(null,"You have successfully booked your flight, you can choose to be redirected to the page of your choice.", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
+					Object[]possibleValues = {"Check Profile", "Book Another Flight", "Go Back to Main Menu"}; 
+					double price = plane.getPrice(Integer.parseInt(pass), Integer.parseInt(children)); 
+					Object selectedValue = JOptionPane.showInputDialog(null,"$"+price+"0 has been paid. You have successfully booked your flight, you can cancel your purchase by following the intructions in the profile page", "Confirmed Ticket Booking",JOptionPane.INFORMATION_MESSAGE, null,possibleValues, possibleValues[2]);
 			        if (selectedValue == possibleValues[0]) {
 			        	frame.dispose(); 
 
