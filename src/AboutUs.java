@@ -1,3 +1,7 @@
+/**
+ * @author Mariam Hussain
+ * This class loads an image to display information about the program
+ */
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -11,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class AboutUs implements ActionListener{
+	
 	//declaration of components
 	Color darkBlue = new Color(20, 64, 109);
 	JFrame aboutUs = new JFrame();
