@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.io.*;
 
@@ -35,7 +36,8 @@ public class SignIn implements ActionListener {
 
 	// Creating text fields and associated labels for user input 
 	JLabel userName, confirmUserName, password, confirmPassword; 
-	JTextField userTf1, userTf2, pwrdTf1, pwrdTf2;
+	JTextField userTf1, userTf2; 
+	JPasswordField pwrdTf1, pwrdTf2;
 
 	/**
 	 * This method displays the sign up page with text fields for user input that becomes stored in the UserDetails.txt
@@ -68,8 +70,8 @@ public class SignIn implements ActionListener {
 		// creating the textfields for user input 
 		userTf1 = new JTextField();  
 		userTf2 = new JTextField();  
-		pwrdTf1 = new JTextField();  
-		pwrdTf2 = new JTextField(); 
+		pwrdTf1 = new JPasswordField();  
+		pwrdTf2 = new JPasswordField(); 
 		userTf1.setBounds(300, 30, 200, 30);  
 		userTf2.setBounds(300, 70, 200, 30); 
 		pwrdTf1.setBounds(300, 110, 200, 30);  
@@ -156,7 +158,7 @@ public class SignIn implements ActionListener {
 		}
 
 
-		// This code was made while the Source: https://docs.oracle.com/javase/7/docs/api/javax/swing/JOptionPane.html
+		// This code was made while using the Source: https://docs.oracle.com/javase/7/docs/api/javax/swing/JOptionPane.html
 
 		//Once the user details have been written to the txt file, a JOptionPane is displayed so the user can choose to Log In or go back to Main Menu 
 		// stores options in an array and uses elemts to display to JOption Pane
