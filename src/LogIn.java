@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+
 
 /**
  * 
@@ -35,7 +37,8 @@ public class LogIn implements ActionListener {
 	
 	//creating text fields and associated labels
 	JLabel userName, password; 
-    JTextField userTf, pwrdTf;
+    	JTextField userTf; 
+	JPasswordField pwrdTf;
     
     /**
      * This method displays a login page with text fields for the user to enter their username, password and then confirm it to go to the welcome page
@@ -59,7 +62,7 @@ public class LogIn implements ActionListener {
 		
 		//adding the textfields to input username and password
 		userTf = new JTextField();  
-		pwrdTf = new JTextField();  
+		pwrdTf = new JPasswordField();  
 		userTf.setBounds(300, 30, 200, 30);  
 		pwrdTf.setBounds(300, 70, 200, 30); 
 		
