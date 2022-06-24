@@ -537,12 +537,21 @@ public class BookTickets implements ActionListener{
 				//error message
 				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!");  
 				counter = 0; 
+				frame.dispose();
+				BookTickets b = new BookTickets(ChooseFlights.destination, ChooseFlights.time);
 			}
 			}
 			
 			//error message
 			catch(Exception ee) {
 				JOptionPane.showMessageDialog(finalConfirm, "Make sure to fill out all the information before confirming!");  
+				frame.dispose();
+				try {
+					BookTickets b = new BookTickets(ChooseFlights.destination, ChooseFlights.time);
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 			
