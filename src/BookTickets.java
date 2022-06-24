@@ -46,6 +46,7 @@ public class BookTickets implements ActionListener{
 	JLabel seatLabel = new JLabel();
 	JLabel p = new JLabel("Adult Passengers");
 	JLabel p2 = new JLabel("#Of Child Passengers (under 12)");
+	JLabel instructions = new JLabel("*Make sure to enter the #of passengers before clicking enter.");
 
 	//creating colors
 	Color grey = new Color(211, 211, 211);
@@ -138,6 +139,11 @@ public class BookTickets implements ActionListener{
 	    //setting bounds for labels for the text fields
 	    p.setBounds(300, 150, 200, 30);
 	    p2.setBounds(300, 250, 200, 30);
+	    
+	    //adding the instructions label
+		instructions.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+		instructions.setBounds(300,300,500,80);
+		instructions.setForeground(Color.black);
 
 	    //adding confirm button
 	    confirm.setBounds(300, 350, 100, 50);
@@ -159,7 +165,7 @@ public class BookTickets implements ActionListener{
 		seatLabel.setForeground(Color.black);
 		
 		//adding the final confirm button (once all conditions are met)
-	    finalConfirm.setBounds(300, 570, 150, 50);
+	    finalConfirm.setBounds(700, 570, 150, 50);
 	    finalConfirm.setFocusable(false);
 	    finalConfirm.setFont(new Font("Times New Roman", Font.ITALIC, 30));
 	    finalConfirm.addActionListener(this);
@@ -217,6 +223,7 @@ public class BookTickets implements ActionListener{
 		frame.add(finalConfirm); 
 		frame.add(goBack);
 		frame.add(panel);
+		frame.add(instructions);
 		
 
 		
@@ -598,6 +605,17 @@ public class BookTickets implements ActionListener{
 		
 		}
 		}
+	
+
+
+
+		
+
+
+		
+
+
+		
 	
 
 
