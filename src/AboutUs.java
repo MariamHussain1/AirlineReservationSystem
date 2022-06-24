@@ -1,5 +1,6 @@
+
 /**
- * @author Mariam Hussain and Shruthi Konduru
+ * @author Mariam Hussain
  * This class loads an image to display information about the program
  */
 import java.awt.Color;
@@ -12,7 +13,10 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.PopupFactory;
 
 public class AboutUs implements ActionListener{
 	
@@ -27,7 +31,7 @@ public class AboutUs implements ActionListener{
 	public AboutUs () throws MalformedURLException{
 		
 	//setting frame properties
-	aboutUs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	aboutUs.setDefaultCloseOperation(aboutUs.DISPOSE_ON_CLOSE);
 	aboutUs.setLayout(null);
 	aboutUs.setVisible(true);
 	aboutUs.setTitle("Airline Reservation System: About Us"); 
@@ -62,40 +66,28 @@ public class AboutUs implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		//uses if statement to load main menu if back button is clicked
-		if(e.getSource() == back) {
-			
-			try {
-				Menu men2 = new Menu();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-			//closes about us page
-			aboutUs.dispose();
-		
-	}
+
+		//uses if statement to load credits page if credits button is clicked 
 		if (e.getSource() == credits) {
-			// creates frame to show "works cited" image 
-			JFrame credit = new JFrame();
-			Icon worksCited = new ImageIcon("Images/ARScreditpage.png");
-			JLabel creds = new JLabel(worksCited);
-
-			credit.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			credit.setLayout(null);
-			credit.setVisible(true);
-			credit.setTitle("Airline Reservation System: Credits"); 
-			credit.setResizable(false);
-			credit.pack();
-			credit.setSize(900,800);
-		
-		    creds.setBounds(0,55,900,650);
-			credit.add(creds);
-			credit.add(back); 
-
+			try {
+				Credits credits = new Credits();
+			} catch (MalformedURLException e1) {
+				e1.printStackTrace();
+			} 
 
 		}
+		//uses if statement to load main menu if back button is clicked
+		if(e.getSource() == back) {
+			aboutUs.dispose();
+			try {
+				Menu au = new Menu();
+			} catch (MalformedURLException e1) {
+				e1.printStackTrace();
+			}
+
+		
+	}
+
+
 	}
 }
