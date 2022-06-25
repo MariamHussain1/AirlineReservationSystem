@@ -1,10 +1,8 @@
 /**
- * 
- * @author Mariam Hussain & Shruthi Konduru
- * 
  * This is an abstract plane class which is the foundation for the other subclasses. It has static variables so they can be used in the book tickets class.
  * It has a constructor which creates an entry for a booked flight and sets and returns values for the passed parameters
- *
+ * @author Mariam Hussain & Shruthi Konduru
+ * 
  */
 public abstract class Plane {
 	
