@@ -13,9 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 /**
- * 
- * @author Mariam Hussain and Shruthi Konduru
  * This class acts as the main menu for the program where the user can redirect themselves to where they'd like to go 
+ * @author Mariam Hussain and Shruthi Konduru
+ * 
  */
 public class Welcome implements ActionListener{
 	
@@ -201,6 +201,7 @@ public class Welcome implements ActionListener{
 		}
 		
 		if (e.getSource()==PlayLottery) {
+			frame.dispose();
 			try {
 				//if lottery is clicked, the lottery class is called 
 				Lottery lotto = new Lottery ();
@@ -223,4 +224,3 @@ public class Welcome implements ActionListener{
 	}
 
 		
-
