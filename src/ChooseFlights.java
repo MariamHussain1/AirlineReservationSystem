@@ -1,10 +1,3 @@
-/**
- * @author Shruthi Konduru and Mariam Hussain
- * 
- * This class allows the user to choose between international and domestic flights. On either option being clicked they will be presented with 4 flight destination options which when one 
- * is clicked will lead them to the book tickets class.
- */
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -19,8 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
-
-
+/**
+ * This class allows the user to choose between international and domestic flights. On either option being clicked they will be presented with 4 flight destination options which when one 
+ * is clicked will lead them to the book tickets class.
+ * @author Shruthi Konduru and Mariam Hussain
+ * 
+ */
 
 public class ChooseFlights implements ActionListener{
 	
