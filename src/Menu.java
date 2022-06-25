@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
- * 
+ * This class loads in buttons allowing the user to log in, log out, sigin and see the about us page
  * @author Mariam Hussain
  *
  */
