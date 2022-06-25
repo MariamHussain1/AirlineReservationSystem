@@ -1,15 +1,13 @@
 /**
- * 
+ * This program is a child class of Plane.java. It uses the constructor from the parent class and has an additional method for setting and getting the price
  * @author Mariam Hussain & Shruthi Konduru
  * 
- * This program is a child class of Plane.java. It uses the constructor from the parent class and has an additional method for setting and getting the price
- *
  */
 public class Economy extends Plane {
 	//declaration of variables
-	public double price;
-	private double regPrice; 
-	private double childPrice; 
+	public int price;
+	private int regPrice; 
+	private int childPrice; 
 	private int adultSeats;
 	private int childSeats;
 	
@@ -35,7 +33,7 @@ public class Economy extends Plane {
 	 * @param childSeats: int
 	 * @return the total price (double)
 	 */
-	public double getPrice(int adultSeats, int childSeats){	
+	public int getPrice(int adultSeats, int childSeats){	
 		if(getFlightType().equals("Domestic")) {
 			regPrice = 200;
 			childPrice = 100;
