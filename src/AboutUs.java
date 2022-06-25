@@ -1,7 +1,7 @@
 
 /**
  * @author Mariam Hussain
- * This class loads an image to display information about the program
+ * This class loads an image to display information about our Airline Reservation System
  */
 import java.awt.Color;
 import java.awt.Font;
