@@ -14,7 +14,7 @@ import javax.swing.JPasswordField;
 
 
 /**
- * 
+ * This class allows the user to enter their username and password to enter the database
  * @author Shruthi Konduru
  *
  */
