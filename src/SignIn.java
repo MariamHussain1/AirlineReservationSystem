@@ -1,5 +1,3 @@
-
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -18,9 +16,8 @@ import javax.swing.JTextField;
 import java.io.*;
 
 /**
- * 
- * @author Shruthi Konduru and Mariam Hussain 
  * This class allows the user to create their username and password to be stored in UserDetails.txt
+ * @author Shruthi Konduru and Mariam Hussain 
  */
 public class SignIn implements ActionListener {
 
@@ -188,4 +185,3 @@ public class SignIn implements ActionListener {
 	}
 
 }
-
