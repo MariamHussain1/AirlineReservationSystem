@@ -25,6 +25,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Profile implements ActionListener{
 	//Adding frame
@@ -39,6 +41,10 @@ public class Profile implements ActionListener{
 	public String departure; 
 	public String adultPass; 
 	public String childPass; 
+	public String f;
+	
+	//creating arrayList
+	ArrayList<String> flights = new ArrayList<String>();
 
 	// Defining the panel to display the flights from the txt file
 	JPanel panel = new JPanel(); 
@@ -50,13 +56,13 @@ public class Profile implements ActionListener{
 	//Defining the JButtons
 	JButton flight = new JButton();
 	JButton back = new JButton("Main Menu");
-	JButton confirm = new JButton("Confirm Cancellation");
+	JButton confirm = new JButton("Cancel a flight");
 
 	// Creating the on-screen text as JLabel
 	JLabel title = new JLabel();
 
 	// Defining the image
-	Icon plane = new ImageIcon("Images/flighthistory.png");
+	Icon plane = new ImageIcon("Images/flighthistory.jpg");
 	JLabel planee = new JLabel(plane); 
 
 	/**
@@ -75,28 +81,38 @@ public class Profile implements ActionListener{
 		// Setting bounds of the plane Image
 		planee.setBounds(0, 0, 900, 100); 
 
+		
 		// Creating the back button
-		back.setBounds(760, 10, 90, 50);
 		back.setFocusable(false);
-		back.setFont(new Font("Times New Roman", Font.BOLD, 10));
+		back.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		back.addActionListener(this);
 		back.setBackground(Color.lightGray);
+
 
 		//Using FlowLayout to display elements of the users Flights
 		panel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		panel.setBounds(50,150,800,800);
 		panel.setBackground(Color.white);
+		panel.add(back);
+		
+		// Creating the cancel button
+		confirm.setBounds(400, 700, 150,70 );
+		confirm.setFocusable(false);
+		confirm.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		confirm.addActionListener(this);
+		confirm.setBackground(Color.lightGray);
 
 		//Adding the context of each element of each object stored in FlightHistory.txt
-		JLabel info = new JLabel("Username     Password              Type                                Class                          Destination            Departure                   Adult Pass.     Child Pass.");
+		JLabel info = new JLabel("Flight Type                                              Flight Class                                     Destination                     Departure                  Adult Pass.     Child Pass.");
 		info.setFont(new Font("Times New Roman", Font.BOLD, 10));
 
 		panel.add(info);
+		panel.add(confirm);
 		frame.getContentPane().add(panel);
 
 		//Creating instructions for user
 		title.setFont(new Font("Times New Roman", Font.BOLD, 25));
-		title.setText("Welcome to your profile. Click on a flight entry to cancel a flight: ");
+		title.setText("Welcome to your flight history. Click the cancel button to cancel a flight: ");
 		title.setBounds(50,85,900,100);
 
 
@@ -127,45 +143,17 @@ public class Profile implements ActionListener{
 					childPass = inputArray [7]; 
 
 					// Each flight element is displayed as a button
-					flight = new JButton(firstName+"          "+lastName+"          "+type+"          "+classF+"          "+travelDestination+"          "+departure+"              "+adultPass+"         "+childPass);
-					flight.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					flight.addActionListener(this);
+					
+					flights.add(firstName+" "+lastName+" "+type+" "+classF+" "+travelDestination+" "+departure+" "+adultPass+" "+childPass);
+
+					JLabel flight = new JLabel(type+"        "+classF+"         "+travelDestination+"        "+departure+"      "+adultPass+"       "+childPass);
+					flight.setFont(new Font("Times New Roman", Font.BOLD, 25));
+								        
 					// adding each flight as a button 
 					panel.add(flight);
 					frame.getContentPane().add(panel);
-					flight.addActionListener(new ActionListener() {
-						/**
-						 * This method uses ActionMouseListener, if flight button is clicked, there will be an option to cancel the flight 
-						 */
-						public void actionPerformed(ActionEvent e) {
-							int result = JOptionPane.showConfirmDialog(frame, "Do you want to cancel the flight?");
-
-							if (result  == JOptionPane.YES_OPTION) {
-								// Calling method to remove line from txt file
-								removeRecord("FlightHistory.txt", firstName+" "+lastName+" "+type+" "+classF+" "+travelDestination+" "+departure+" "+adultPass+" "+childPass);
-								frame.dispose();
-								try {
-									// Class is reloaded to present the new flights after removal 
-									Profile p = new Profile();
-								} catch (MalformedURLException e1) {
-									e1.printStackTrace();
-								}
-
-
-							} else if (result  == JOptionPane.NO_OPTION) {
-								// If No button was pressed - nothing happens
-							}
-						}
-					});
-					frame.getContentPane().add(panel);    
+					}
 				}
-
-
-
-			}
-
-
-
 
 			buffer.close();
 			frame.getContentPane().setBackground(Color.white);
@@ -173,8 +161,10 @@ public class Profile implements ActionListener{
 			frame.setSize(900,800);
 			// Adding all components
 			frame.add(back);
+			frame.add(confirm);
 			frame.add(planee);
 			frame.add(title);
+			
 
 
 		}
@@ -218,7 +208,8 @@ public class Profile implements ActionListener{
 			while((currentLine = br.readLine())!= null) {
 				//copies lines from old file to new file EXCEPT the line you wish to remove
 				if(!(currentLine.equals(removeLine))) {
-					pw.println(currentLine);
+					bw.write(currentLine);
+					bw.newLine();
 				}
 
 			}
@@ -252,18 +243,41 @@ public class Profile implements ActionListener{
 	 */
 	public void actionPerformed(ActionEvent e) {
 		// If back button is clicked, user is redirected to the main menu 
-		if(e.getSource() == back) {
+		if (e.getSource()==confirm) {
+            int len =  flights.lastIndexOf(flights); 
+            System.out.println(len);
+            Object [] options = flights.toArray(); 
+            Object selectedValue = JOptionPane.showInputDialog(null,"You have chosen to cancel a flight, choose the flight.", "Cancel Flight",JOptionPane.INFORMATION_MESSAGE, null,options, flights.size());
 
+            for (int i = 0; i < flights.size(); i++) {
+                if (selectedValue == options[i]) {
+                    String line = (String) options[i]; 
+                    System.out.println(line);
+                    removeRecord("FlightHistory.txt", line);
+                    frame.dispose();
+                    try {
+						Profile p = new Profile();
+					} catch (MalformedURLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+                }
+            }
+
+
+        }
+		if(e.getSource() == back) {
+			
+			frame.dispose();
 			try {
-				Welcome men2 = new Welcome();
+				Welcome w = new Welcome();
 			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			frame.dispose();
-
-		}
-
+		
+			}
 	}
 
 }
