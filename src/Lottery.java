@@ -13,8 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
+ * This program generates a random number and gives the user 3 tries to guess the number. Upon guessing the user wins a free flight
+ * @author Mariam Hussain & Shruthi Konduru
  * 
- * @author Mariam Hussain
  *
  */
 
@@ -76,16 +77,16 @@ public class Lottery implements ActionListener {
 	    planeLabel.setBounds(350,150,500,500);
 		
 	    //adding the next button
-	    next.setBounds(200, 500, 200, 75);
+	    next.setBounds(150, 650, 200, 75);
 		next.setFocusable(false);
 		next.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		next.addActionListener(this);
-		next.setBackground(white);
+		next.setBackground(grayBlue);
 	
 		//add the title
 		title.setText("LOTTERY TIME");
 		title.setFont(new Font("Times New Roman", Font.BOLD, 80));
-		title.setBounds(100,-270,650,650);
+		title.setBounds(200,-270,650,650);
 		title.setForeground(darkBlue);
 		
 		//Add a blue panel to the left
@@ -111,7 +112,7 @@ public class Lottery implements ActionListener {
 		//setting the instructions
 		text2.setText("GUESS THE NUMBER AND WIN A FREE TRIP!");
 		text2.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		text2.setBounds(100,-200,800,800);
+		text2.setBounds(300,-200,800,800);
 		text2.setForeground(darkBlue);
 			
 	    //set properties for the frame
