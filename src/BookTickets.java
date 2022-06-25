@@ -1,9 +1,3 @@
-/**
- * @author Shurthi Konduru & Mariam Hussain
- * 
- * This class shows the page where the user can choose the flight class they want, and input the number of child and adult passengers and therafter choose their flight and pay for
- * tickets. It is linked to the plane classes and the lottery class where the user can use their win to get a free flight. From here the user can go back, or view their flight history
- */
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -23,6 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.border.Border;
+/**
+ * This class shows the page where the user can choose the flight class they want, and input the number of child and adult passengers and there after choose their flight and pay for tickets. It is linked to the plane classes and the lottery class where the user can use their win to get a free flight. From here the user can go back, or view their flight history
+ * @author Shurthi Konduru & Mariam Hussain
+ * 
+ 
+ */
 
 public class BookTickets implements ActionListener{
 	
@@ -58,6 +58,7 @@ public class BookTickets implements ActionListener{
 	public static String flightClass;
 	public static String pass;
 	public static String children;
+	public static String price;
 	
 	//creating text fields
     JTextField passengers = new JTextField(30);
@@ -287,7 +288,9 @@ public class BookTickets implements ActionListener{
            }
            catch(Exception ee) {
         	   //show error message
-        	   JOptionPane.showMessageDialog(confirm, "Input is invalid");  
+        	   JOptionPane.showMessageDialog(confirm, "Input is invalid"); 
+        	   passengers.setText("");  
+               child.setText("");  
 
            }
 		}
@@ -313,6 +316,7 @@ public class BookTickets implements ActionListener{
 				//creates instance for business class by setting the variables and calling business class
 				if (flightClass.equals("Business")) {
 				Business plane = new Business(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
+				price = "$"+plane.getPrice(Integer.valueOf(pass), Integer.valueOf(children));
 				
 				//writes the flight entry into the flight history.txt
 				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
@@ -321,7 +325,7 @@ public class BookTickets implements ActionListener{
 					{
 					
 
-					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
+					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children)+" "+price);
 					    
 					} 
 				catch (IOException e12) {
@@ -392,14 +396,14 @@ public class BookTickets implements ActionListener{
 				
 				//creates instance of first class
 				First plane = new First(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-				
+				price = "$"+plane.getPrice(Integer.valueOf(pass), Integer.valueOf(children));
 				//writes the flight entry into the flight history.txt
 				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
 					    BufferedWriter bw = new BufferedWriter(file);
 					    PrintWriter out = new PrintWriter(bw))
 					{
 
-					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
+					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children)+" "+price);
 					    
 					} 
 				catch (IOException e12) {
@@ -464,7 +468,7 @@ public class BookTickets implements ActionListener{
 				
 				//creates instance of economy class
 				Economy plane = new Economy(timeChosen, "CA, Toronto", destinationChosen, flightTypeChosen, flightClass, Integer.parseInt(pass), Integer.parseInt(children));
-				
+			    price = "$"+plane.getPrice(Integer.valueOf(pass), Integer.valueOf(children));
 				//writes the flight entry into the flight history.txt
 				
 				try(FileWriter file = new FileWriter("FlightHistory.txt", true);
@@ -472,7 +476,7 @@ public class BookTickets implements ActionListener{
 					    PrintWriter out = new PrintWriter(bw))
 					{
 
-					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children));
+					    out.println(LogIn.username + " "+LogIn.pswrd+" "+flightTypeChosen + " "+ flightClass+" " +destinationChosen + " "+timeChosen+" "+Integer.parseInt(pass)+" "+Integer.parseInt(children)+" "+price);
 					    
 					} 
 	
