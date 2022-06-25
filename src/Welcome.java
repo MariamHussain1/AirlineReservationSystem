@@ -31,13 +31,14 @@ public class Welcome implements ActionListener{
 	JLabel text3 = new JLabel();
 	JPanel greyPanel = new JPanel();
 	JPanel secondGreyPanel = new JPanel();
+	JLabel userDetails = new JLabel(); 
 	
 	//defining the buttons and images associated with each respective button 
-	Icon pfp = new ImageIcon("Images/profile.jpg");
+	Icon pfp = new ImageIcon("Images/profile.png");
 	JButton profile = new JButton(pfp);
-	Icon flight = new ImageIcon("Images/chooseFlights.png");
+	Icon flight = new ImageIcon("Images/flights.png");
 	JButton bookFlight = new JButton(flight);
-	Icon lottery = new ImageIcon("Images/lottery.png");
+	Icon lottery = new ImageIcon("Images/lotto.png");
 	JButton PlayLottery = new JButton(lottery);
 	
 	//creating colors
@@ -82,6 +83,15 @@ public class Welcome implements ActionListener{
 		text1.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		text1.setBounds(140,300,200,200);
 		text1.setForeground(darkBlue);
+		
+		//adding components to user details label 
+		userDetails.setText("Username: "+LogIn.username+"    Password: "+LogIn.pswrd);
+		userDetails.setFont(new Font("Times New Roman", Font.BOLD, 50));
+		userDetails.setBounds(100,670,800,100);
+		userDetails.setForeground(grayBlue);
+
+
+
 	    
 	    //setting bounds for the flight image
 	    frame.getContentPane().add(bookFlight);
@@ -129,9 +139,9 @@ public class Welcome implements ActionListener{
 	    back.setBackground(white);
 	
 		//add the title
-		title.setText("WELCOME");
+		title.setText("Welcome, "+LogIn.username);
 		title.setFont(new Font("Times New Roman", Font.BOLD, 80));
-		title.setBounds(230,-230,650,650);
+		title.setBounds(190,-230,650,650);
 		title.setForeground(grayBlue);
 		
 		
@@ -150,6 +160,7 @@ public class Welcome implements ActionListener{
 	    // adding all components to frame 
 		frame.add(back);
 		frame.add(title);
+		frame.add(userDetails); 
 		frame.add(greyPanel);
 		frame.add(secondGreyPanel);
 		frame.add(profile);
